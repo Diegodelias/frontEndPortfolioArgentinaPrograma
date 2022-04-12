@@ -1,1 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style:none;
+    text-decoration:none;
+    scroll-behavior: smooth;
+    scroll-padding-top:3rem;
+
+}
+:root {
+    --bg-color: #191D2B;
+    --second-bg-color: #f9f9f9;
+    --text-color: #fff;
+    --second-color: #191d2b;
+    --main-color: #27AE60;;
+    --other-color:#6a6a6a;
+    --big-font: 5.7rem;
+    --h2-font: 3.8rem;
+    --p-font: 1rem;
+
+}
+
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+
+}
+
+.count {
+    display:flex;
+    flex-wrap:wrap;
+    margin-top: 100px;
+
+}
+
+.count li{
+    margin-right: 55px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.count span{
+    color: var(--text-color);
+    font-weight:700;
+    font-size:1.8rem;
+
+}
+
+
+
+.count-particles{
+    background: #000022;
+    position: absolute;
+    top: 48px;
+    left: 0;
+    width: 80px;
+    color: #13E8E9;
+    font-size: .8em;
+    text-align: left;
+    text-indent: 4px;
+    line-height: 14px;
+    padding-bottom: 2px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+  }
+  
+  .js-count-particles{
+    font-size: 1.1em;
+  }
+  
+  #stats,
+  .count-particles{
+    -webkit-user-select: none;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+  
+  #stats{
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+  }
+  
+  .count-particles{
+    border-radius: 0 0 3px 3px;
+  }
+  
+  
+  /* ---- particles.js container ---- */
+  
+  #particles-js{
+    width: 100%;
+    height: 100%;
+    background-color: #b61924;
+    background-image: url('');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+  }
+  

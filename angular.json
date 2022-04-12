@@ -32,7 +32,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["src/assets/customJs/script.js" , "src/assets/customJs/app.js" , "src/assets/customJs/lib/stats.js"]
           },
           "configurations": {
             "production": {
