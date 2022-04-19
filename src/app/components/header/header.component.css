@@ -65,3 +65,60 @@ span{
     color: var(--main-color);
     border: 2px solid var(--main-color);
 }
+/* social media*/
+
+.social {
+    position:fixed;
+    height:75vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    transform: translate(-500px,0);
+}
+
+.social a{
+    color: #fff;
+    background:rgba(47,79,79,0.4);
+    font-size:20px;
+    font-weight:500;
+    text-decoration:none;
+    display:block;
+    margin: 5px;
+    padding: 20px;
+    width: 300px;
+    text-align: right;
+    border-radius: 50px;
+    transition: 1s;
+    transition-property:transform;
+
+}
+
+.social a:hover{
+    transform: translate(140px,0);
+}
+.social i  {
+    margin-left:10px;
+    font-size: 30px;
+    width: 30px;
+    height:30px;
+}
+
+
+.social a:nth-child(1){
+    color:#0076b0;
+
+}
+
+.social a:nth-child(3){
+    color:#cf0a91;
+
+}
+
+
+.social a:nth-child(4){
+    color:var(--main-color);
+
+}
+
+
+

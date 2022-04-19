@@ -1,0 +1,9 @@
+.contenedor_titulo{
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 1.3rem;
+}
+
+.barra {
+    margin-bottom: 1rem;
+}

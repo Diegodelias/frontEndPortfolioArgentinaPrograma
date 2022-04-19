@@ -50,7 +50,9 @@ span{
     bottom: -4px;
     transition: ease .40s;
 }
-
+.navlist a:hover , .h-btn a  {
+    text-decoration: none; 
+}
 .navlist a:hover::after {
     width: 100%;
 }

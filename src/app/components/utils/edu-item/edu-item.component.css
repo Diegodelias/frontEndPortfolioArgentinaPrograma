@@ -1,0 +1,48 @@
+
+
+
+.timeline-item{
+    position: relative;
+    padding-left: 3rem;
+    border-left: 1px solid var(--other-color);
+}
+
+.tl-icon {
+    position:absolute;
+    left: -27px;
+    top:0;
+    background-color: var(--main-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tl-duration{
+    padding: .2rem .6rem;
+    background-color: var(--other-color);
+    border-radius: 15px;
+    display: inline-block;
+    font-size: .8rem;
+    text-transform:uppercase;
+    font-weight:500;
+}
+i {
+    font-size: 1.3rem;
+}
+
+h5 {
+    padding: 1rem 0;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight:600;
+}
+
+#span2{
+    color: var(--other-color);
+    font-weight: 500;
+    font-size: 1.2rem;
+
+}
