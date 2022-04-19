@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style:none;
+    text-decoration:none;
+    scroll-behavior: smooth;
+    scroll-padding-top:3rem;
+
+}
+:root {
+    --bg-color: #191D2B;
+    --second-bg-color: #f9f9f9;
+    --text-color: #fff;
+    --second-color: #191d2b;
+    --main-color: #27AE60;;
+    --other-color:#6a6a6a;
+    --big-font: 5.7rem;
+    --h2-font: 3.8rem;
+    --p-font: 1rem;
+
+}
+
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+
+}
+
+.count {
+    display:flex;
+    flex-wrap:wrap;
+    margin-top: 100px;
+
+}
+
+.count li{
+    margin-right: 55px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.count span{
+    color: var(--text-color);
+    font-weight:700;
+    font-size:1.8rem;
+
+}
+
+
+
