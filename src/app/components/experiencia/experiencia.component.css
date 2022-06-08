@@ -1,6 +1,7 @@
 .main-title{
     margin-top: 1.5rem;
     text-align:center;
+    
 }
 
 span {
@@ -88,4 +89,37 @@ h2 {
 .box:hover {
     transform: translateY(-15px);
     box-shadow: 0px 15px 30px 0px rgb(0 0 0 /70%)
+}
+
+.titulo-seccion {
+    display:flex;
+
+}
+
+/* modal */
+
+.modal-header {
+    background-color:#2a2e35;
+    border-bottom:1px solid #2a2e35;
+}
+
+.modal-body{
+    background-color:#2a2e35;
+   
+
+
+}
+
+.modal-footer {
+    background-color:#2a2e35;
+    border-top:1px solid #2a2e35;
+
+}
+
+.foto-upload{
+    margin-top:1rem;
+}
+
+.texto {
+    margin-top:1rem;
 }
