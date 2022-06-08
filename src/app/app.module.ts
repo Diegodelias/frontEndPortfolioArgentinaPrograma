@@ -18,6 +18,12 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ProfSkillsComponent } from './components/utils/prof-skills/prof-skills.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
 import { PortfolioItemComponent } from './components/utils/portfolio-item/portfolio-item.component';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {  FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SelectMesesComponent } from './components/utils/select-meses/select-meses.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +41,12 @@ import { PortfolioItemComponent } from './components/utils/portfolio-item/portfo
     ProgressBarComponent,
     ProfSkillsComponent,
     ProyectosComponent,
-    PortfolioItemComponent
+    PortfolioItemComponent,
+    SelectMesesComponent,
+    
   ],
   imports: [
+    NgbPaginationModule, NgbAlertModule,
     BrowserModule,ProgressbarModule.forRoot(),
     NgCircleProgressModule.forRoot({
       // set defaults here
@@ -49,10 +58,15 @@ import { PortfolioItemComponent } from './components/utils/portfolio-item/portfo
       animationDuration: 300,
     
     
-    })
+    }),
+    ModalModule,
+    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule
 
   ],
-  providers: [],
+  providers: [BsModalService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

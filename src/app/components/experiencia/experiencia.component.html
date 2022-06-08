@@ -1,87 +1,101 @@
 
     <div class="main-title">
-        <h2>Experiencia <span>laboral</span> <span class="bg-text">trabajos </span></h2>
+       
+         <div> <h2>Experiencia <span>laboral</span> <span class="bg-text">trabajos </span></h2> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" ><i class='bx bxs-pencil'></i></button></div>   
+       
+        
+        
     </div>
+    <div class="contenedor-boton"> </div>
 
     <section class="experience" id="resume">
-     
-        <div class="resume-content">
+   
+   
+        <div  class="resume-content">
 
-            <app-experiencebox></app-experiencebox>
-            <app-experiencebox></app-experiencebox>
-            <app-experiencebox></app-experiencebox>
-            <app-experiencebox></app-experiencebox>
-            <app-experiencebox></app-experiencebox>
-            <app-experiencebox></app-experiencebox>
+       
             
-            <!-- <div class="box">
-                <h6>March 2013 - Present</h6>
-                <h4>Web Development</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequuntur est, 
-                    officia laborum quaerat sed ea perferendis ratione eum temporibus porro tempore error aspernatur! 
-                    Omnis sint doloribus consequuntur totam mollitia.</p>
-                    <h5>Nombre Empresa</h5>
+    
+            <app-experiencebox (GetDatosExperiencia)="GetDatosExperiencia()" *ngFor="let exp of experienciaData" [puesto]="exp.puesto" [periodo]="exp.periodo" [descripcion]="exp.descripcion" [empresa]= "exp.empresa_nombre"
+             [id]="exp.trabajoId" [completo]="exp" ></app-experiencebox>
 
-            </div>
-            <div class="box">
-                <h6>March 2013 - Present</h6>
-                <h4>Web Development</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequuntur est, 
-                    officia laborum quaerat sed ea perferendis ratione eum temporibus porro tempore error aspernatur! 
-                    Omnis sint doloribus consequuntur totam mollitia.</p>
-                    <h5>Nombre Empresa</h5>
-
-            </div>
-
-            <div class="box">
-                <h6>March 2013 - Present</h6>
-                <h4>Web Development</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequuntur est, 
-                    officia laborum quaerat sed ea perferendis ratione eum temporibus porro tempore error aspernatur! 
-                    Omnis sint doloribus consequuntur totam mollitia.</p>
-                    <h5>Nombre Empresa</h5>
-
-            </div>
-
-            <div class="box">
-                <h6>March 2013 - Present</h6>
-                <h4>Web Development</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequuntur est, 
-                    officia laborum quaerat sed ea perferendis ratione eum temporibus porro tempore error aspernatur! 
-                    Omnis sint doloribus consequuntur totam mollitia.</p>
-                    <h5>Nombre Empresa</h5>
-
-            </div>
-
+            <!-- https://asbnotebook.com/passing-data-from-parent-to-child-component-angular/ -->
+           
             
-            <div class="box">
-                <h6>March 2013 - Present</h6>
-                <h4>Web Development</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequuntur est, 
-                    officia laborum quaerat sed ea perferendis ratione eum temporibus porro tempore error aspernatur! 
-                    Omnis sint doloribus consequuntur totam mollitia.</p>
-                    <h5>Nombre Empresa</h5>
-
-            </div>
-
-            
-            <div class="box">
-                <h6>March 2013 - Present</h6>
-                <h4>Web Development</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium consequuntur est, 
-                    officia laborum quaerat sed ea perferendis ratione eum temporibus porro tempore error aspernatur! 
-                    Omnis sint doloribus consequuntur totam mollitia.</p>
-                    <h5>Nombre Empresa</h5>
-
-            </div>
- -->
-
-
-
 
 
         </div>
+        <ng-template #content let-modal>
+            <div class="modal-header ">
+              <h4 class="modal-title" id="modal-basic-title">Crear nueva experiencia laboral</h4>
+              <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="formValue" (ngSubmit)="postExperiencia()" >
+                <div class="mb-3">
+                  <label for="puesto" class="form-label" >Puesto</label>
+                  <input type="text" formControlName="puesto" class="form-control" id="puesto" aria-describedby="emailHelp" >
+                 
+                </div>
+                <div class="mb-3">
+                  <label for="empresa" class="form-label">Empresa</label>
+                  <input type="text" formControlName="empresa"   id="empresa" class="form-control" >
+                </div>
 
+
+                <!-- <div class="mb-3"> 
+                  <label class="control-label" for="mes">Mes en que inicio a trabajar</label>
+                  <select class="custom-select mb-3" formControlName="mes_Inicio">
+                 
+                  <option *ngFor="let mes of Meses" [ngValue]="mes">
+                    {{ mes }}
+                  </option>
+                </select>
+               
+                </div>
+               -->
+               <div class="mb-3">
+                <label for="periodo" class="form-label">Periodo </label>
+                <input type="text" formControlName="periodo"   id="periodo" class="form-control" >
+              </div>
+
+  
+                <div class="foto-upload">
+
+                    <label for="exampleFormControlTextarea1">Subir Foto logo empresa</label>
+                    <div class="input-group">
+                    
+                     <div class="input-group-prepend">
+                       <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                     </div>
+                     <div class="custom-file">
+                       <input type="file" formControlName="logo_empresa"  class="custom-file-input" id="inputGroupFile01"
+                         aria-describedby="inputGroupFileAddon01">
+                       <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
+                     </div>
+                   </div>
+     
+                 </div>
+                   
+                    
+  
+                    
+               
+                
+                <div class="texto">
+                <label for="descripcion">Descripción puesto</label>
+               
+                <textarea type="text" formControlName="descripcion" class="form-control rounded-0" id="descripcion" rows="10"></textarea>
+                 </div>
+                 <div class="modal-footer">
+                  <button type="submit" class="btn btn-outline-success" >Guardar</button>
+                </div>
+             
+              </form>
+            </div>
+          
+          </ng-template>
+      
 
 
     </section>

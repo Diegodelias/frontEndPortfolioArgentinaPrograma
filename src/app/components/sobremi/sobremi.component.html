@@ -9,18 +9,82 @@
         <img src="../../../assets/about.jpg" alt="">
     </div>
 
-    <div class="about-text">
-        <h2>Sobre mi</h2>
-        <h5>Developer <span> & Designer</span></h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit iusto quasi magni ducimus consectetur, pariatur enim facilis dicta dignissimos molestias quos aliquam, assumenda itaque error culpa similique a repellendus reprehenderit!
-        Fugiat, assumenda repudiandae explicabo molestiae maxime iure sint est. Culpa, alias. Pariatur suscipit voluptatibus dolore sequi architecto repudiandae labore officiis modi vel sit quibusdam dolores a fuga, aspernatur, libero aliquid?
-        Beatae sed nam aliquam, tempore incidunt voluptatum, non sapiente, veniam corporis nobis eveniet. Praesentium id quisquam ex expedita saepe ea adipisci cupiditate itaque ut mollitia, fugiat perspiciatis impedit. Aspernatur, tempore?</p>
+    <div *ngFor="let row of sobreMiData"  class="about-text">
+     
 
+    <div class="titulo-seccion-edit">
+            <h2>{{row.titulo}}</h2>
+             <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" (click)="llenarForm(row)"><i class='bx bxs-pencil'></i></button></div>
+             <div class="contenedor-boton-borrar"> <button class="btn btn-danger btn-circle m-1"><i class='bx bxs-trash'></i></button></div>
+            
+        </div>
+        <!-- <h5>Developer <span> & Designer</span></h5> -->
+        <h5>{{row.subtitulo}}</h5>
+        <p>{{row.sobremi}}</p>
+      
+       
         <app-boton></app-boton>
+        <ng-template #content let-modal>
+          <div class="modal-header ">
+            <h4 class="modal-title" id="modal-basic-title">Actulizar contenido sección</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="formValue" (ngSubmit)="editarSobreMi(row)">
+              <div class="mb-3">
+                <label for="titulo" class="form-label" >Titulo</label>
+                <input type="text" formControlName="titulo" class="form-control" id="titulo" aria-describedby="emailHelp" >
+               
+              </div>
+              <div class="mb-3">
+                <label for="subtitulo" class="form-label">Subtitulo</label>
+                <input type="text" formControlName="subtitulo"   id="subtitulo" class="form-control" >
+              </div>
+
+                  
+              <div class="foto-upload">
+
+                <label for="exampleFormControlTextarea1">Subir Foto</label>
+                <div class="input-group">
+                
+                 <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                 </div>
+                 <div class="custom-file">
+                   <input type="file" class="custom-file-input" id="inputGroupFile01"
+                     aria-describedby="inputGroupFileAddon01">
+                   <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
+                 </div>
+               </div>
+ 
+             </div>
+               
+              
+              <div class="texto">
+              <label for="texto">Texto</label>
+             
+              <textarea type="text" formControlName="texto" class="form-control rounded-0" id="texto" rows="10"></textarea>
+               </div>
+               <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+                <button type="submit" class="btn btn-outline-success" >Guardar</button>
+              </div>
+           
+            </form>
+          </div>
+        
+        </ng-template>
+    
+        
+        <!-- <pre>{{ closeResult }}</pre> -->
+         
+    
+
+        
     </div>
+
 
    
 
-
 </section>
-
+ 
