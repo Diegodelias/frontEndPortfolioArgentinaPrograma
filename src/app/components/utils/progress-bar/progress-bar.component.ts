@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SkillsModel } from '../../../modelos/skillsModels';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { SkillSrvService  } from '../../../servicios/skill-srv.service';
 
@@ -28,18 +28,18 @@ export class ProgressBarComponent implements OnInit {
   @Output("GetDatosSkills") GetDatosSkills: EventEmitter<any> = new EventEmitter();
 
   closeResult = '';
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
 
   dataActual = null;
 
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal,private skillsrv:SkillSrvService ) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private skillsrv:SkillSrvService ) { }
 
   ngOnInit(): void {
     console.log("iddddd", this._id)
-    this.formValue = new FormGroup({
-      skillnombre: new FormControl(''),
-      tipo: new FormControl(''),
-      skillporcentaje : new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      skillnombre: new UntypedFormControl(''),
+      tipo: new UntypedFormControl(''),
+      skillporcentaje : new UntypedFormControl('')
     
     })
   }

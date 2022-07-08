@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {EduSrvService } from '../../../servicios/edu-srv.service';
 import { EducacionModel} from '../../../modelos/educacionModel';
 
@@ -16,11 +16,11 @@ export class EduItemComponent implements OnInit {
   educacionModelObj: EducacionModel = new EducacionModel();
 
   closeResult = '';
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
 
   dataActual = null;
 
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal,private edusrv:EduSrvService) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private edusrv:EduSrvService) { }
   @Input('titulonombre') _titulonombre:String;
   @Input('nombreInstitucion') _nombreInstitucion:String;
   @Input('periodo') _periodo:String;
@@ -30,12 +30,12 @@ export class EduItemComponent implements OnInit {
   @Input('completo') _todo:any;
   ngOnInit(): void {
 
-    this.formValue = new FormGroup({
-      titulonombre: new FormControl(''),
-      nombreInstitucion : new FormControl(''),
-      periodo : new FormControl(''),
-      institucion_url: new FormControl(''),
-      contenido: new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      titulonombre: new UntypedFormControl(''),
+      nombreInstitucion : new UntypedFormControl(''),
+      periodo : new UntypedFormControl(''),
+      institucion_url: new UntypedFormControl(''),
+      contenido: new UntypedFormControl('')
     })
 
 

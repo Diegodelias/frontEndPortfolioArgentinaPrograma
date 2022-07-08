@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { EducacionModel } from '../../modelos/educacionModel';
 import { EduSrvService } from '../../servicios/edu-srv.service';
 
@@ -12,7 +12,7 @@ import { EduSrvService } from '../../servicios/edu-srv.service';
 })
 export class EducacionComponent implements OnInit {
 
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
   educacionModelObj : EducacionModel= new EducacionModel();
   educacionData : EducacionModel[]=[];
   
@@ -44,12 +44,12 @@ export class EducacionComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.formValue = new FormGroup({
-      titulonombre: new FormControl(''),
-      nombreInstitucion : new FormControl(''),
-      periodo : new FormControl(''),
-      institucion_url: new FormControl(''),
-      contenido: new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      titulonombre: new UntypedFormControl(''),
+      nombreInstitucion : new UntypedFormControl(''),
+      periodo : new UntypedFormControl(''),
+      institucion_url: new UntypedFormControl(''),
+      contenido: new UntypedFormControl('')
     })
 
 

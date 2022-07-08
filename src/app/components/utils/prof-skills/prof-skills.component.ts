@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { SkillSrvService  } from '../../../servicios/skill-srv.service';
 import { SkillsModel } from '../../../modelos/skillsModels';
 
@@ -17,7 +17,7 @@ export class ProfSkillsComponent implements OnInit {
   
   experienciaData : SkillsModel[]=[];
 
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal,private skillsrv:SkillSrvService ) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private skillsrv:SkillSrvService ) { }
 
   
 
@@ -27,15 +27,15 @@ export class ProfSkillsComponent implements OnInit {
   @Input('id') _id:number;
   @Output("GetDatosSkills") GetDatosSkills: EventEmitter<any> = new EventEmitter();
   closeResult = '';
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
 
   dataActual = null;
 
   ngOnInit(): void {
-    this.formValue = new FormGroup({
-      skillnombre: new FormControl(''),
-      tipo: new FormControl(''),
-      skillporcentaje : new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      skillnombre: new UntypedFormControl(''),
+      tipo: new UntypedFormControl(''),
+      skillporcentaje : new UntypedFormControl('')
     
     })
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import 'boxicons';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { HeaderModel } from '../../modelos/headerModel';
 import { HeadersrvService } from '../../servicios/headersrv.service';
 import { SobremiModel } from '../../components/sobremi/sobremiModel';
@@ -15,7 +15,7 @@ declare var particlesJS: any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
   headerModelObj : HeaderModel = new HeaderModel ();
   headerData : HeaderModel[]=[];
   closeResult = '';
@@ -34,16 +34,16 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal,private headerSrv :HeadersrvService) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private headerSrv :HeadersrvService) { }
 
   ngOnInit(): void {
     // particlesJS.load('particles-js', 'particles.json', null);
 
-    this.formValue = new FormGroup({
-      nombre: new FormControl(''),
-      apellido : new FormControl(''),
-      titulo : new FormControl(''),
-      subtitulo : new FormControl(''),
+    this.formValue = new UntypedFormGroup({
+      nombre: new UntypedFormControl(''),
+      apellido : new UntypedFormControl(''),
+      titulo : new UntypedFormControl(''),
+      subtitulo : new UntypedFormControl(''),
     })
     this.GetDatosUsuario();
    

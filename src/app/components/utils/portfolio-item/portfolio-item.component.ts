@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {ControlContainer, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {ControlContainer, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { ProyectossrvService  } from '../../../servicios/proyectossrv.service';
 import { ProyectoModel  } from '../../../modelos/proyectoModel';
 
@@ -22,19 +22,19 @@ export class PortfolioItemComponent implements OnInit {
   @Input('linkvideo') _linkvideo:String;
   @Output("GetDatosProyecto") GetDatosProyecto: EventEmitter<any> = new EventEmitter();
   closeResult = '';
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
 
   dataActual = null;
 
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal,private proysrv:ProyectossrvService  ) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private proysrv:ProyectossrvService  ) { }
 
   ngOnInit(): void {
 
-    this.formValue = new FormGroup({
-      nombreproyecto: new FormControl(''),
-      demourl: new FormControl(''),
-      githuburl : new FormControl(''),
-      linkvideo: new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      nombreproyecto: new UntypedFormControl(''),
+      demourl: new UntypedFormControl(''),
+      githuburl : new UntypedFormControl(''),
+      linkvideo: new UntypedFormControl('')
     
     })
   }

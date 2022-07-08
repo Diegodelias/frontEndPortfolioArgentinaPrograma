@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { ExperienciaModel} from '../../modelos/experienciaModel';
 import {ExperienciaSrvService } from '../../servicios/experiencia-srv.service';
 
@@ -12,13 +12,13 @@ import {ExperienciaSrvService } from '../../servicios/experiencia-srv.service';
   styleUrls: ['./experiencia.component.css']
 })
 export class ExperienciaComponent implements OnInit {
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
   experienciaModelObj : ExperienciaModel = new ExperienciaModel();
   experienciaData : ExperienciaModel[]=[];
   
   closeResult = '';
   
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal, private experienciaSrv : ExperienciaSrvService  ) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal, private experienciaSrv : ExperienciaSrvService  ) { }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -42,13 +42,13 @@ export class ExperienciaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formValue = new FormGroup({
-      puesto: new FormControl(''),
-      empresa : new FormControl(''),
-      logo_empresa : new FormControl(''),
-      periodo: new FormControl(''),
-      anioInicio : new FormControl(''),
-      descripcion : new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      puesto: new UntypedFormControl(''),
+      empresa : new UntypedFormControl(''),
+      logo_empresa : new UntypedFormControl(''),
+      periodo: new UntypedFormControl(''),
+      anioInicio : new UntypedFormControl(''),
+      descripcion : new UntypedFormControl('')
      
     })
     this.GetDatosExperiencia();

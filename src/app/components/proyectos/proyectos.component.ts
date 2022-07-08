@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { ProyectoModel } from '../../modelos/proyectoModel';
 import { ProyectossrvService } from '../../servicios/proyectossrv.service';
 
@@ -11,7 +11,7 @@ import { ProyectossrvService } from '../../servicios/proyectossrv.service';
   styleUrls: ['./proyectos.component.css']
 })
 export class ProyectosComponent implements OnInit {
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
   proyectoModelObj :  ProyectoModel = new  ProyectoModel();
   proyectoData :  ProyectoModel[]=[];
   
@@ -43,12 +43,12 @@ export class ProyectosComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.formValue = new FormGroup({
-      nombre_proyecto: new FormControl(''),
-      demourl : new FormControl(''),
-      githuburl : new FormControl(''),
-      descripcion: new FormControl(''),
-      foto_proyecto:  new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      nombre_proyecto: new UntypedFormControl(''),
+      demourl : new UntypedFormControl(''),
+      githuburl : new UntypedFormControl(''),
+      descripcion: new UntypedFormControl(''),
+      foto_proyecto:  new UntypedFormControl('')
      
     })
 

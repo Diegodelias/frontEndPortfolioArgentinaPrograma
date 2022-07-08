@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {ExperienciaSrvService } from '../../../servicios/experiencia-srv.service';
 import { ExperienciaModel} from '../../../modelos/experienciaModel';
 
@@ -13,7 +13,7 @@ export class ExperienceboxComponent implements OnInit {
 
   experienciaModelObj: ExperienciaModel = new ExperienciaModel();
 
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal,private expsrv:ExperienciaSrvService) { 
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private expsrv:ExperienciaSrvService) { 
    
 
   }
@@ -27,18 +27,18 @@ export class ExperienceboxComponent implements OnInit {
   @Output("GetDatosExperiencia") GetDatosExperiencia: EventEmitter<any> = new EventEmitter();
 
   closeResult = '';
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
 
   dataActual = null;
 
   
 
   ngOnInit(): void {
-    this.formValue = new FormGroup({
-      puesto: new FormControl(''),
-      empresa : new FormControl(''),
-      periodo : new FormControl(''),
-      descripcion: new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      puesto: new UntypedFormControl(''),
+      empresa : new UntypedFormControl(''),
+      periodo : new UntypedFormControl(''),
+      descripcion: new UntypedFormControl('')
     })
     // this.getDataExperiencia(this._id);
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillSrvService  } from '../../servicios/skill-srv.service';
 import { SkillsModel } from '../../modelos/skillsModels';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -13,19 +13,19 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class SkillsComponent implements OnInit {
 
 
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
   skillsModelObj : SkillsModel= new SkillsModel();
   skillsData : SkillsModel[]=[];
   
   closeResult = '';
 
- constructor(private formbuilder:FormBuilder,private modalService: NgbModal, private SkillSrv :SkillSrvService   ) { }
+ constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal, private SkillSrv :SkillSrvService   ) { }
  
 ngOnInit(): void {
-    this.formValue = new FormGroup({
-      skillporcentaje: new FormControl(''),
-      skillnombre: new FormControl(''),
-      tipo:new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      skillporcentaje: new UntypedFormControl(''),
+      skillnombre: new UntypedFormControl(''),
+      tipo:new UntypedFormControl('')
 
   })
   

@@ -1,7 +1,7 @@
 import { Component, OnInit  } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { SobremiModel } from './sobremiModel';
 import { ApiService } from '../../servicios/api.service';
 
@@ -12,14 +12,14 @@ import { ApiService } from '../../servicios/api.service';
 })
 export class SobremiComponent implements OnInit {
 
-  formValue !: FormGroup;
+  formValue !: UntypedFormGroup;
 
   sobreMiModelObj: SobremiModel = new SobremiModel();
 
   sobreMiData : SobremiModel[]=[];
   
   closeResult = '';
-  constructor(private formbuilder:FormBuilder,private modalService: NgbModal , private api :ApiService) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal , private api :ApiService) { }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -61,10 +61,10 @@ export class SobremiComponent implements OnInit {
 
     // })
 
-    this.formValue = new FormGroup({
-      titulo: new FormControl(''),
-      subtitulo : new FormControl(''),
-      texto : new FormControl('')
+    this.formValue = new UntypedFormGroup({
+      titulo: new UntypedFormControl(''),
+      subtitulo : new UntypedFormControl(''),
+      texto : new UntypedFormControl('')
     })
     this.GetDatosSobreMi();
    
