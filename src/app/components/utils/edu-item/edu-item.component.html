@@ -3,9 +3,81 @@
         <div class="tl-icon">
             <i class='bx bxs-briefcase-alt-2'></i>
         </div> 
-        <p class="tl-duration">2010-present</p>
-            <h5>Web developer<span id="span2">-Microsoft </span></h5>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora incidunt molestiae, debitis sequi quam minima? Repudiandae ea cum numquam tempore. Facere nihil neque, modi dolores at velit quae ipsum nam.
-            Iusto eius aut corporis error esse architecto enim, natus facere quia repellat pariatur. Atque perferendis consequuntur natus doloribus, nisi autem dolorem tempore ex ipsum pariatur laboriosam voluptate officiis, earum alias.</p>               
+        <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" (click)="llenarForm(_todo)"><i class='bx bxs-pencil'></i></button></div>
+        <div class="contenedor-boton-borrar"> <button  type="button" class="btn btn-danger btn-circle m-1"  (click)="deleteEdu(_id)" ><i class='bx bxs-trash'></i></button></div>
+        <p class="tl-duration">{{ _periodo }}</p>
+            <h5>{{ _titulonombre }}<span id="span2">-{{ _nombreInstitucion}} </span></h5>
+            <p>{{ _contenido }}</p>               
     </div>
 
+
+
+
+    
+    <ng-template #content let-modal>
+        <div class="modal-header ">
+          <h4 class="modal-title" id="modal-basic-title">Crear nueva formación</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue"  (ngSubmit)="editarEducacion(_todo)" >
+            <div class="mb-3">
+              <label for="titulonombre" class="form-label" >Titulo Nombre</label>
+              <input type="text" formControlName="titulonombre" class="form-control" id="titulonombre" aria-describedby="emailHelp" >
+             
+            </div>
+            <div class="mb-3">
+              <label for="nombreInstitucion" class="form-label">Nombre Institución</label>
+              <input type="text" formControlName="nombreInstitucion"   id="nombreInstitucion" class="form-control" >
+            </div>
+
+
+          
+           
+           <div class="mb-3">
+            <label for="periodo" class="form-label">Periodo </label>
+            <input type="text" formControlName="periodo"   id="periodo" class="form-control" >
+          </div>
+          
+          <div class="mb-3">
+            <label for="institucion_url" class="form-label">Pagina web de la institución </label>
+            <input type="text" formControlName="institucion_url"   id="institucion_url" class="form-control" >
+          </div>
+
+            <div class="foto-upload">
+
+                <label for="exampleFormControlTextarea1">Subir Foto logo institución</label>
+                <div class="input-group">
+                
+                 <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                 </div>
+                 <div class="custom-file">
+                   <input type="file" formControlName="logo_empresa"  class="custom-file-input" id="inputGroupFile01"
+                     aria-describedby="inputGroupFileAddon01">
+                   <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
+                 </div>
+               </div>
+ 
+             </div>
+               
+                
+
+                
+           
+            
+            <div class="texto">
+            <label for="contenido">Descripción </label>
+           
+            <textarea type="text" formControlName="contenido" class="form-control rounded-0" id="contenido" rows="10"></textarea>
+             </div>
+             <div class="modal-footer">
+              <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+              <button type="submit" class="btn btn-outline-success" >Guardar</button>
+            </div>
+         
+          </form>
+        </div>
+      
+      </ng-template>
+  

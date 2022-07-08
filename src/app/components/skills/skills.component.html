@@ -5,16 +5,25 @@
 
 <section>
 
+    <div>  <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" ><i class='bx bxs-pencil'></i></button></div> 
+
     <div class="container">
         <div class="mh-professional-skill">
             <h3>Technical Skills</h3>
-            <div class="each-skills">
+            <div class="each-skills" *ngFor="let skill of  skillsData">
+
+              <ng-template [ngIf]="skill.tipo === 'tecnica' ">
+                <app-progress-bar [skillporcentaje]="skill.skillporcentaje" [skillnombre] = "skill.skillnombre " [id]="skill.skillId "
+                [completo]="skill"  (GetDatosSkills)="GetDatosSkills()" ></app-progress-bar>
+
+
+              </ng-template>
                
+                
+                 <!-- <app-progress-bar></app-progress-bar>
                  <app-progress-bar></app-progress-bar>
                  <app-progress-bar></app-progress-bar>
-                 <app-progress-bar></app-progress-bar>
-                 <app-progress-bar></app-progress-bar>
-            
+             -->
             </div>
 
         </div>
@@ -24,14 +33,14 @@
                 <h3>Professional Skills</h3>
 
 
-                <div class="mh-professional-progress">
+                <div class="mh-professional-progress" >
 
-            
-                    <app-prof-skills></app-prof-skills>
-                    <app-prof-skills></app-prof-skills>
-                    <app-prof-skills></app-prof-skills>
-                    <app-prof-skills></app-prof-skills> 
-
+                  <ng-template *ngFor="let skill of  skillsData" [ngIf]="skill.tipo === 'soft' ">
+                    <app-prof-skills  [skillporcentaje]="skill.skillporcentaje" [skillnombre] = "skill.skillnombre " [id]="skill.skillId "
+                    [completo]="skill"  (GetDatosSkills)="GetDatosSkills()" ></app-prof-skills>
+                 
+                  </ng-template>
+               
 
 
 
@@ -47,3 +56,55 @@
 
 
 </section>
+<ng-template #content let-modal>
+    <div class="modal-header ">
+      <h4 class="modal-title" id="modal-basic-title">Crear nueva skill</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formValue" (ngSubmit)=" postSkill()"  >
+        <div class="mb-3">
+          <label for="titulonombre" class="form-label" >Nombre skill</label>
+          <input type="text" formControlName="skillnombre" class="form-control" id="titulonombre" >
+         
+        </div>
+
+
+        <div class="mb-3">
+        <label for="titulonombre" class="form-label" >Tipo de  skill</label>
+        <select class="form-select" formControlName="tipo" aria-label="Default select example">
+          <option selected>Seleccionar tipo de skill</option>
+          <option value="tecnica">Technical Skill</option>
+          <option value="soft">Soft Skill</option>
+        
+        </select>
+
+        </div>
+
+
+        <div class="mb-3">
+          <label for="customRange2" class="form-label">Nivel (0 a 100)</label>
+          <input type="range" formControlName="skillporcentaje" class="form-range" min="0" max="100" id="customRange2">
+
+
+        </div>
+
+
+
+      
+   
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+          <button type="submit" class="btn btn-outline-success" >Guardar</button>
+        </div>
+     
+            
+
+            
+       
+        
+      
+      </form>
+    </div>
+  
+  </ng-template>

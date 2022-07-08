@@ -97,6 +97,8 @@ export class ExperienceboxComponent implements OnInit {
       console.log("objeto actualizar" ,   this.experienciaModelObj);
       // console.log(res);
       alert("Experiencia actualizada correctamente");
+      let ref = document.getElementById('cancel');
+      ref?.click();
       this.GetDatosExperiencia.emit()
       this.formValue.reset();
     },

@@ -5,24 +5,94 @@
             <img src="../../../assets/portfotos/port1.jpg" alt="">
         </div>
         <div class="hover-item">
-            <h3>Porject Source</h3>
-            <div class="icons">
-                <a href="www.google.com" class="icon" target="_blank">
+            <h3>{{_nombre_proyecto}}</h3>
+            <h3>{{_demourl}}</h3>
+            <div class="icons" >
+                <a href="{{_demourl}}"  class="icon" target="_blank">
                     <i class='bx bxl-github'></i>
                 </a>
-                <a href="www.google.com" class="icon" target="_blank">
+                <a href="{{_linkvideo}}" class="icon" target="_blank">
                     <i class='bx bxl-youtube' ></i>
                 </a>
-                <a href="www.google.com" class="icon" target="_blank">
+                <a href="{{_githuburl}}" class="icon" target="_blank">
                     <i class='bx bxl-github'></i>
                 </a>
 
-
+                
 
             </div>
-
+            
+  
+            <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1"  (click)="open(content)" (click)="llenarForm( _completo)" ><i class='bx bxs-pencil'></i></button></div>
+            <div class="contenedor-boton-borrar"> <button  type="button" class="btn btn-danger btn-circle m-1" (click)="deleteSkill(_id)" ><i class='bx bxs-trash'></i></button></div>
         </div>
+
+        
 
     </div>
 
 
+
+    <ng-template #content let-modal>
+        <div class="modal-header ">
+          <h4 class="modal-title" id="modal-basic-title">Agregar nuevo  proyecto</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue"  (ngSubmit)="editarProyecto(_completo)"  >
+            <div class="mb-3">
+              <label for="titulonombre" class="form-label" >Nombre proyecto</label>
+              <input type="text" formControlName="nombreproyecto" class="form-control" id="titulonombre" >
+             
+            </div>
+
+            <div class="mb-3">
+              <label for="titulonombre" class="form-label" >Url demo del proyecto</label>
+              <input type="text" formControlName="demourl" class="form-control" id="titulonombre" >
+             
+            </div>
+
+           
+            <div class="mb-3">
+              <label for="titulonombre" class="form-label" >Url a código proyecto en github</label>
+              <input type="text" formControlName="githuburl" class="form-control" id="titulonombre" >
+             
+            </div>
+
+            <div class="mb-3">
+              <label for="titulonombre" class="form-label" >Link a video demo del proyecto</label>
+              <input type="text" formControlName="githuburl" class="form-control" id="titulonombre" >
+             
+            </div>
+
+            <div class="foto-upload">
+
+              <label for="exampleFormControlTextarea1">Subir Foto del proyecto</label>
+              <div class="input-group">
+              
+               <div class="input-group-prepend">
+                 <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+               </div>
+               <div class="custom-file">
+                 <input type="file" formControlName="logo_empresa"  class="custom-file-input" id="inputGroupFile01"
+                   aria-describedby="inputGroupFileAddon01">
+                 <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
+               </div>
+             </div>
+
+           </div>
+             <div class="modal-footer">
+              <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+              <button type="submit" class="btn btn-outline-success" >Guardar</button>
+            </div>
+         
+                
+    
+                
+           
+            
+          
+          </form>
+        </div>
+      
+      </ng-template>

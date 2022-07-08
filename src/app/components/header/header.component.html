@@ -1,6 +1,8 @@
 
 
-<section class="home">
+<section  *ngFor="let row of  headerData"  class="home">
+
+
     
 <div class="social">
     <a href="#">Linkedin <i class='bx bxl-linkedin-square' ></i></a>
@@ -11,9 +13,12 @@
 </div>
     
     <div class="home-text">
-        <h1>Soy Tahmid <br> <span>Web Developer</span></h1>
-        <h4>Usa Based fREELANCER</h4>
-        <a href="#" class="btn">Leer Mas</a>
+        <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)"><i class='bx bxs-pencil'></i></button></div>
+        <!-- <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" (click)="llenarForm(row)"><i class='bx bxs-pencil'></i></button></div> -->
+        <div class="contenedor-boton-borrar"> <button class="btn btn-danger btn-circle m-1"><i class='bx bxs-trash'></i></button></div>
+        <h1>{{ row.nombre}}  <span>{{ row.apellido}}</span></h1>
+        <h4>{{ row.headertitulo}}</h4>
+        <a href="#" class="boton">Leer Mas</a>
         <!-- <ul class="count">
             <li><span>5k+</span><br>Global Happy Clients</li>
             <li><span>18k+</span><br>Projects Completed</li>
@@ -22,5 +27,68 @@
         </ul> -->
       
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header ">
+      <h4 class="modal-title" id="modal-basic-title">Actualizar contenido header</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <!-- <form [formGroup]="formValue" (ngSubmit)="editarSobreMi(row)"> -->
+        <form [formGroup]="formValue" (ngSubmit)="editarHeader(row)">
+        <div class="mb-3">
+          <label for="nombre" class="form-label" >nombre </label>
+          <input type="text" formControlName="nombre" class="form-control" id="nombre" aria-describedby="emailHelp" >
+         
+        </div>
+
+        <div class="mb-3">
+          <label for="apellido" class="form-label" >apellido</label>
+          <input type="text" formControlName="apellido" class="form-control" id="apellido" aria-describedby="emailHelp" >
+         
+        </div>
+
+        <div class="mb-3">
+          <label for="titulo" class="form-label">titulo</label>
+          <input type="text" formControlName="titulo"   id="titulo" class="form-control" >
+        </div>
+
+
+
+            
+        <div class="foto-upload">
+
+          <label for="exampleFormControlTextarea1">Subir Foto</label>
+          <div class="input-group">
+          
+           <div class="input-group-prepend">
+             <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+           </div>
+           <div class="custom-file">
+             <input type="file" class="custom-file-input" id="inputGroupFile01"
+               aria-describedby="inputGroupFileAddon01">
+             <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
+           </div>
+         </div>
+
+       </div>
+         
+
+     
+      
+        
+      
+         <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+          <button type="submit" class="btn btn-outline-success" >Guardar</button>
+        </div>
+     
+      </form>
+    </div>
+  
+  </ng-template>
+
+  
 
 </section>

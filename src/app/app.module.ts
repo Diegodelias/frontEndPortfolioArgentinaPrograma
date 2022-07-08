@@ -23,7 +23,7 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {  FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { SelectMesesComponent } from './components/utils/select-meses/select-meses.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { SelectMesesComponent } from './components/utils/select-meses/select-mes
     ProfSkillsComponent,
     ProyectosComponent,
     PortfolioItemComponent,
-    SelectMesesComponent,
+    
     
   ],
   imports: [
@@ -63,7 +63,9 @@ import { SelectMesesComponent } from './components/utils/select-meses/select-mes
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
+
 
   ],
   providers: [BsModalService ],

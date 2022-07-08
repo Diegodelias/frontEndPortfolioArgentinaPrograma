@@ -65,7 +65,9 @@ export class ExperienciaComponent implements OnInit {
     this.experienciaSrv.postExperiencia(this.experienciaModelObj)
     .subscribe(res=>{
       console.log(res);
-      alert("Experiencia agregada correctamente")
+      let ref = document.getElementById('cancel');
+      ref?.click();
+      // alert("Experiencia agregada correctamente")
       this.ngOnInit()
     }),
     err=>{

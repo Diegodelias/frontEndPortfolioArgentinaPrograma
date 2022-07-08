@@ -47,3 +47,32 @@ section {
     padding-bottom: 3rem;
        
 }
+
+
+/* modal */
+
+.modal-header {
+    background-color:#2a2e35;
+    border-bottom:1px solid #2a2e35;
+}
+
+.modal-body{
+    background-color:#2a2e35;
+   
+
+
+}
+
+.modal-footer {
+    background-color:#2a2e35;
+    border-top:1px solid #2a2e35;
+
+}
+
+.foto-upload{
+    margin-top:1rem;
+}
+
+.texto {
+    margin-top:1rem;
+}

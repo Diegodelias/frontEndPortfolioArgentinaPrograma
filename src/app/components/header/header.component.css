@@ -1,6 +1,13 @@
 section {
     padding: 120px 16%;
 }
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
 
 .home{
     height: 100vh;
@@ -45,7 +52,7 @@ span{
     margin-bottom:40px;
 }
 
-.btn {
+.boton {
     display: inline-block;
     font-size: 14px;
     font-weight:600;
@@ -59,7 +66,7 @@ span{
 
 }
 
-.btn:hover{
+.boton:hover{
     transform: translateY(-10px);
     background: transparent;
     color: var(--main-color);
@@ -122,3 +129,47 @@ span{
 
 
 
+/* edicion*/
+.titulo-seccion-edit{
+    display:flex;
+    
+    
+    
+}
+
+
+.contenedor-boton , .contenedor-boton-borrar{
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+
+.modal-header {
+    background-color:#2a2e35;
+    border-bottom:1px solid #2a2e35;
+}
+
+.modal-body{
+    background-color:#2a2e35;
+   
+
+
+}
+
+.modal-footer {
+    background-color:#2a2e35;
+    border-top:1px solid #2a2e35;
+
+}
+
+.foto-upload{
+    margin-top:1rem;
+}
+
+.texto {
+    margin-top:1rem;
+}
+
+.mb-3{
+    margin-top:1rem;
+}

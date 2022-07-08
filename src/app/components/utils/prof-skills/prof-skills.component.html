@@ -1,9 +1,67 @@
 <div class="skill-progress-container">
                   
-    <circle-progress [percent]="60" [radius]="100" [outerStrokeWidth]="10" [innerStrokeWidth]="10" [space]="-10" [backgroundStrokeWidth]=0
+    <circle-progress [percent]="_skillporcentaje" [radius]="100" [outerStrokeWidth]="10" [innerStrokeWidth]="10" [space]="-10" [backgroundStrokeWidth]=0
         [outerStrokeColor]="'#28A745'" [innerStrokeColor]="'#ffffff'" [animation]="true" [animationDuration]="300" [showTitle]="true" [showSubtitle]="false"
         [radius]="50"
         >
     </circle-progress>
-    <div class="pr-skill-name">Comunication</div>
+    <div class="pr-skill-name">{{_skillnombre}}</div>
+    
+    <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1"  (click)="open(content)" (click)="llenarForm(_completo)" ><i class='bx bxs-pencil'></i></button></div>
+    <div class="contenedor-boton-borrar"> <button  type="button" class="btn btn-danger btn-circle m-1" (click)="deleteSkill(_id)" ><i class='bx bxs-trash'></i></button></div>
 </div>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header ">
+      <h4 class="modal-title" id="modal-basic-title">Crear nueva skill</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formValue"  (ngSubmit)="editarSkill(_completo)"  >
+        <div class="mb-3">
+          <label for="titulonombre" class="form-label" >Nombre skill</label>
+          <input type="text" formControlName="skillnombre" class="form-control" id="titulonombre" >
+         
+        </div>
+
+
+        <div class="mb-3">
+        <label for="titulonombre" class="form-label" >Tipo de  skill</label>
+        <select class="form-select" formControlName="tipo" aria-label="Default select example">
+          <option selected>Seleccionar tipo de skill</option>
+          <option value="tecnica">Technical Skill</option>
+          <option value="soft">Soft Skill</option>
+        
+        </select>
+
+        </div>
+
+
+        <div class="mb-3">
+          <label for="customRange2" class="form-label">Nivel (0 a 100)</label>
+          <input type="range" formControlName="skillporcentaje" class="form-range" min="0" max="100" id="customRange2">
+
+
+        </div>
+
+
+
+      
+   
+        <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+          <button type="submit" class="btn btn-outline-success" >Guardar</button>
+        </div>
+     
+            
+
+            
+       
+        
+      
+      </form>
+    </div>
+  
+  </ng-template>

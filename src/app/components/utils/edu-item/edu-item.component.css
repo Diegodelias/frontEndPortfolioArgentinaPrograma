@@ -46,3 +46,45 @@ h5 {
     font-size: 1.2rem;
 
 }
+
+/* modal */
+
+.titulo-seccion-edit{
+    display:flex;
+    
+    
+    
+}
+
+
+.contenedor-boton , .contenedor-boton-borrar{
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+}
+
+
+.modal-header {
+    background-color:#2a2e35;
+    border-bottom:1px solid #2a2e35;
+}
+
+.modal-body{
+    background-color:#2a2e35;
+   
+
+
+}
+
+.modal-footer {
+    background-color:#2a2e35;
+    border-top:1px solid #2a2e35;
+
+}
+
+.foto-upload{
+    margin-top:1rem;
+}
+
+.texto {
+    margin-top:1rem;
+}
