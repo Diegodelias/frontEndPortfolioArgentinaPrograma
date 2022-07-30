@@ -5,6 +5,8 @@ export class ExperienciaModel {
     logo_empresa : string='';
     empresa_nombre : string='';
     descripcion : string = '';
+    idimagen : string = '';
+    imagenurl : string = '';
 
 
 }

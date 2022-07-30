@@ -26,6 +26,7 @@ export class ProfSkillsComponent implements OnInit {
   @Input('completo') _completo:any;
   @Input('id') _id:number;
   @Output("GetDatosSkills") GetDatosSkills: EventEmitter<any> = new EventEmitter();
+  @Input('auth') _auth :any;
   closeResult = '';
   formValue !: UntypedFormGroup;
 

@@ -1,7 +1,7 @@
 <div class="main-title">
     <h2>Mis <span>proyectos</span> <span class="bg-text">Proyectos </span></h2>
 
-    <div>  <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" ><i class='bx bxs-pencil'></i></button></div>  
+    <div *ngIf= "_auth | async">  <button type="button" class="btn btn-success btn-circle m-1" (click)="open(content)" ><i class='bx bx-plus' ></i></button></div>  
 </div>
 
 
@@ -11,8 +11,8 @@
         Here is some of my work that I've done in varius programming languages.
     </p>
     <div class="portfolios">
-    <app-portfolio-item (GetDatosProyecto)="GetDatosProyecto()"  *ngFor="let p of proyectoData" [nombreproyecto] = "p.nombre_proyecto" 
-    [demourl] = "p.demourl" [githuburl]="p.githuburl " [linkvideo]="p.linkvideo" [id]="p.proyectoId" [completo]="p"></app-portfolio-item>
+    <app-portfolio-item (GetDatosProyecto)="GetDatosProyecto()"  *ngFor="let p of proyectoData" [nombreproyecto] = "p.nombreproyecto" 
+    [demourl] = "p.demourl" [githuburl]="p.githuburl " [linkvideo]="p.linkvideo" [id]="p.proyectoId" [completo]="p" [imagenurl]="p.imagenurl"  [auth] = "_auth "></app-portfolio-item>
 
 
     
@@ -29,10 +29,10 @@
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="formValue" (ngSubmit)="postProyecto()"  >
+      <form [formGroup]="formValue" (ngSubmit)="postProyecto()"  enctype="multipart/form-data" >
         <div class="mb-3">
-          <label for="nombre_proyecto" class="form-label" >Nombre del proyecto</label>
-          <input type="text" formControlName="nombreproyecto" class="form-control" id="nombre_proyecto"  aria-describedby="emailHelp" >
+          <label for="nombreproyecto" class="form-label" >Nombre del proyecto</label>
+          <input type="text" formControlName="nombreproyecto" class="form-control" id="nombreproyecto"   >
          
         </div>
         <div class="mb-3">
@@ -48,26 +48,61 @@
         <input type="text" formControlName="githuburl"   id="githuburl" class="form-control" >
       </div>
 
-         
       <div class="mb-3">
-        <label for="githuburl" class="form-label">Link a video demo del proyecto </label>
-        <input type="text" formControlName="githuburl"   id="githuburl" class="form-control" >
+        <label for="linkvideo" class="form-label">Link repo github </label>
+        <input type="text" formControlName="linkvideo"   id="linkvideo" class="form-control" >
       </div>
-     
+
+
+         
+      <!-- <div class="mb-3">
+        <label for="linkvideo" class="form-label">Link a video demo del proyecto </label>
+        <input type="text" formControlName="linkvideo"   id="linkvideo" class="form-control" >
+      </div> -->
+      <div class="texto">
+        <label for="descripcion">Descripción proyecto </label>
+       
+        <textarea type="text" formControlName="descripcion" class="form-control" id="descripcion" rows="10"></textarea>
+         </div>
      
         <div class="foto-upload">
-
+          <ngx-spinner type="ball-scale-multiple">
+            <p style="font-size: 20px; color: white">Subiendo imagen</p>
+          </ngx-spinner>
             <label for="exampleFormControlTextarea1">Subir Foto proyecto</label>
             <div class="input-group">
             
-             <div class="input-group-prepend">
+             <!-- <div class="input-group-prepend">
                <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
-             </div>
+             </div> -->
              <div class="custom-file">
-               <input type="file" formControlName="foto_proyecto"  class="custom-file-input" id="foto_proyecto"
-                 aria-describedby="inputGroupFileAddon01">
-               <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
+               <input type="file" formControlName="imagen"  class="form-control" id="imagen"
+                #imagenInputFile (change)="onFileChange($event)"     accept="image/png, image/jpeg , image/gif" >
+               <label class="custom-file-label" for="imagen">Buscar foto</label>
              </div>
+
+             <div *ngIf="imagen" class="mt-5">
+              <h5>Vista Previa:</h5>
+              <div>
+                <img
+                  class="image-thumbnail"
+                  style="max-width: 100px"
+                  [src]="imagenMin"
+                  alt=""
+                />
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
            </div>
 
          </div>
@@ -77,11 +112,7 @@
             
        
         
-        <div class="texto">
-        <label for="contenido">Descripción proyecto </label>
        
-        <textarea type="text" formControlName="descripcion" class="form-control rounded-0" id="contenido" rows="10"></textarea>
-         </div>
          <div class="modal-footer">
           <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
           <button type="submit" class="btn btn-outline-success" >Guardar</button>

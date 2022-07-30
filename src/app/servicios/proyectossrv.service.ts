@@ -4,8 +4,9 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable } from 'rxjs/internal/Observable';
 import { ProyectoModel } from '../modelos/proyectoModel';
 
-
-const apiUrlUpdate =  'http://localhost:8080/proyectos';
+const apiUrlUpdate2 =  'http://localhost:8080/proyectos/acciones/update/sincambios';  
+const apiUrlUpdate =  'http://localhost:8080/proyectos/acciones/update';
+const apiUrlBorrar =  'http://localhost:8080/proyectos/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,12 +37,19 @@ export class ProyectossrvService {
     return this.httpClient.put(`${apiUrlUpdate}/${id}`, data);
   }
 
+
+  
+  public updateNull(id, data):Observable<any>{
+    return this.httpClient.put<any>(`${apiUrlUpdate2}/${id}`,data);
+    //return this.http.put<any>(this.url+`update/${id}`,usu);
+  }   
+
   get(id): Observable<any> {
     return this.httpClient.get(`${apiUrlUpdate}/${id}`);
   }
 
   deleteProyecto(id: number): Observable<Object>{
-    return this.httpClient.delete(`${apiUrlUpdate}/${id}`);
+    return this.httpClient.delete(`${apiUrlBorrar}/${id}`);
   }
 
 

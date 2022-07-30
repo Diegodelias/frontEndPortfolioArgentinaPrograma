@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from './servicios/api.service';
+import { AuthService } from './servicios/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,4 +16,6 @@ export class AppComponent {
   //       console.log('Res gato' , res)
   //     } ) 
   // }
+
+  constructor(public authService: AuthService) {}
 }

@@ -8,6 +8,8 @@ export class EducacionModel {
     institucion_logo : string='';
     institucion_url : string='';
     tabla_activa : Boolean = true;
+    imagenurl : string = '';
+    idimagen : string = '';
 
 
 }

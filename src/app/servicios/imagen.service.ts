@@ -7,7 +7,7 @@ import { Imagen } from '../modelos/imagen';
   providedIn: 'root'
 })
 export class ImagenService {
-  imagenUrl = 'http://localhost:8080/cloudinary';
+  imagenUrl = 'http://localhost:8080/cloudinary/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -25,4 +25,8 @@ export class ImagenService {
  public delete(id:number):Observable<any> {
   return this.httpClient.delete<any>(this.imagenUrl + `delete/${id}`);
  }
+
+ public getImagen(id:number): Observable<Imagen[]> {
+  return this.httpClient.get<Imagen[]>(this.imagenUrl + `/${id}`);}
+
 }

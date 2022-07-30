@@ -121,3 +121,19 @@ section {
 .texto {
     margin-top:1rem;
 }
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 0; 
+  
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+ 
+  i {
+
+    font-size: 12px;
+
+  }

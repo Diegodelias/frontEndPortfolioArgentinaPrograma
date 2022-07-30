@@ -5,6 +5,7 @@ import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular
 import { HeaderModel } from '../../modelos/headerModel';
 import { HeadersrvService } from '../../servicios/headersrv.service';
 import { SobremiModel } from '../../components/sobremi/sobremiModel';
+import { ApiService } from 'src/app/servicios/api.service';
 
 
 
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   headerModelObj : HeaderModel = new HeaderModel ();
   headerData : HeaderModel[]=[];
   closeResult = '';
+  
 
   dataActual = null;
   
@@ -34,7 +36,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private headerSrv :HeadersrvService) { }
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private headerSrv :HeadersrvService , private api :ApiService) { }
 
   ngOnInit(): void {
     // particlesJS.load('particles-js', 'particles.json', null);
@@ -97,12 +99,34 @@ export class HeaderComponent implements OnInit {
       this.ngOnInit();
     },
     err=>{
-      alert("Hubo un error")
+      console.log("aaaaff", this.headerData[0].userId);
+      alert("Hubo un error a")
     }
     );
     
 
   }
+
+
+  deleteUsu(){
+    
+  
+    this.headerSrv.deleteSobremi(this.headerData[0].userId!).subscribe( data => {
+     
+      let ref = document.getElementById('cancel');
+        ref?.click();
+       
+        this.ngOnInit()
+        window.location.reload();
+   
+
+    }),
+    err=>{
+      alert("Algo saló mal")
+    }
+
+}
+
 
   getDataExperiencia(id): void {
     
@@ -116,6 +140,9 @@ export class HeaderComponent implements OnInit {
           console.log(error , 'este es el error del viejo');
         });
   }
+
+
+
 
   
 

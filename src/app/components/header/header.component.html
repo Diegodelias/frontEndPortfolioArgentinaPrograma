@@ -13,11 +13,21 @@
 </div>
     
     <div class="home-text">
-        <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)"><i class='bx bxs-pencil'></i></button></div>
+        
+      <div class="contenedor-titulo-header">
+
+        <div>  <h1>{{ row.nombre}}  <span>{{ row.apellido}}</span></h1></div>
+
+     
+        <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1 btn-lg" (click)="open(content)"><i class='bx bxs-pencil'></i></button></div>
         <!-- <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" (click)="llenarForm(row)"><i class='bx bxs-pencil'></i></button></div> -->
-        <div class="contenedor-boton-borrar"> <button class="btn btn-danger btn-circle m-1"><i class='bx bxs-trash'></i></button></div>
-        <h1>{{ row.nombre}}  <span>{{ row.apellido}}</span></h1>
+        <div class="contenedor-boton-borrar"> <button class="btn btn-danger btn-circle m-1 "  (click)="deleteUsu()"><i class='bx bxs-trash'></i></button></div>
+
+      </div>
+
+      
         <h4>{{ row.headertitulo}}</h4>
+      
         <a href="#" class="boton">Leer Mas</a>
         <!-- <ul class="count">
             <li><span>5k+</span><br>Global Happy Clients</li>
@@ -57,7 +67,7 @@
 
 
             
-        <div class="foto-upload">
+        <!-- <div class="foto-upload">
 
           <label for="exampleFormControlTextarea1">Subir Foto</label>
           <div class="input-group">
@@ -72,7 +82,7 @@
            </div>
          </div>
 
-       </div>
+       </div> -->
          
 
      

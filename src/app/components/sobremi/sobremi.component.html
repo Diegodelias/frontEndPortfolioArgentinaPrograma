@@ -1,90 +1,376 @@
-
-    <div class="main-title">
-        <h2>Acerca <span>de</span> <span class="bg-text"> sobre mi</span></h2>
+<div class="main-title">
+  
+  <h2>Acerca <span>de</span> <span class="bg-text"> sobre mi</span></h2>
+  <div>
+    <div  *ngIf= "_auth | async">
+      <button
+        type="button"
+        class="btn btn-success btn-circle m-1"
+        (click)="open2(content2)"
+      >
+      <i class='bx bx-plus' ></i>
+      </button>
     </div>
+  </div>
 
-<section class="about" id="about">
-
-    <div class="about-img">
-        <img src="../../../assets/about.jpg" alt="">
+  <ng-template #content2 let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">
+        Cargar datos de usuario
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      ></button>
     </div>
-
-    <div *ngFor="let row of sobreMiData"  class="about-text">
-     
-
-    <div class="titulo-seccion-edit">
-            <h2>{{row.titulo}}</h2>
-             <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" (click)="llenarForm(row)"><i class='bx bxs-pencil'></i></button></div>
-             <div class="contenedor-boton-borrar"> <button class="btn btn-danger btn-circle m-1"><i class='bx bxs-trash'></i></button></div>
-            
+    <div class="modal-body">
+      <form
+        [formGroup]="formValue"
+        (ngSubmit)="postSobremi()"
+        enctype="multipart/form-data"
+      >
+        <div class="mb-3">
+          <label for="headertitulo" class="form-label">Titulo Header</label>
+          <input
+            type="text"
+            formControlName="headertitulo"
+            class="form-control"
+            id="tituloheader"
+          />
         </div>
-        <!-- <h5>Developer <span> & Designer</span></h5> -->
-        <h5>{{row.subtitulo}}</h5>
-        <p>{{row.sobremi}}</p>
-      
-       
-        <app-boton></app-boton>
-        <ng-template #content let-modal>
-          <div class="modal-header ">
-            <h4 class="modal-title" id="modal-basic-title">Actulizar contenido sección</h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-          </div>
-          <div class="modal-body">
-            <form [formGroup]="formValue" (ngSubmit)="editarSobreMi(row)">
-              <div class="mb-3">
-                <label for="titulo" class="form-label" >Titulo</label>
-                <input type="text" formControlName="titulo" class="form-control" id="titulo" aria-describedby="emailHelp" >
-               
-              </div>
-              <div class="mb-3">
-                <label for="subtitulo" class="form-label">Subtitulo</label>
-                <input type="text" formControlName="subtitulo"   id="subtitulo" class="form-control" >
-              </div>
 
-                  
-              <div class="foto-upload">
+        <div class="mb-3">
+          <label for="headersubtitulo" class="form-label"
+            >Subtitulo Header</label
+          >
+          <input
+            type="text"
+            formControlName="headersubtitulo"
+            class="form-control"
+            id="subtituloheader"
+          />
+        </div>
+<!-- 
+        <div class="mb-3">
+          <label for="usuario" class="form-label"
+            >Nombre de usuario</label
+          >
+          <input
+            type="text"
+            formControlName="usuario"
+            class="form-control"
+            id="nombreusuario"
+          />
+        </div> -->
+<!-- 
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="text"
+            formControlName="password"
+            class="form-control"
+            id="password"
+          />
+        </div> -->
 
-                <label for="exampleFormControlTextarea1">Subir Foto</label>
-                <div class="input-group">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="text"
+            formControlName="email"
+            class="form-control"
+            id="email"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            formControlName="nombre"
+            class="form-control"
+            id="nombre"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input
+            type="text"
+            formControlName="apellido"
+            class="form-control"
+            id="apellido"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Titulo seccion sobre mi</label>
+          <input
+            type="text"
+            formControlName="titulo"
+            class="form-control"
+            id="titulo"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="subtitulo" class="form-label"
+            >Subtitulo seccion sobre mi</label
+          >
+          <input
+            type="text"
+            formControlName="subtitulo"
+            id="subtitulo"
+            class="form-control"
+          />
+        </div>
+
+        <div class="foto-upload">
+          <ngx-spinner type="ball-scale-multiple">
+            <p style="font-size: 20px; color: white">Subiendo imagen</p>
+          </ngx-spinner>
+
+          <label for="exampleFormControlTextarea1">Subir Foto</label>
+          <div class="input-group">
+            <!-- <div class="input-group-prepend">
+                   <span class="input-group-text" id="inputGroupFileAddon01"><i class='bx bx-upload' ></i> Subir</span>
+                 </div> -->
+            <div class="custom-file">
+              <input 
+                type="file"
+                class="form-control"
+                id="imagen"
+    
+                #imagenInputFile
+                (change)="onFileChange($event)"
                 
-                 <div class="input-group-prepend">
-                   <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
-                 </div>
-                 <div class="custom-file">
-                   <input type="file" class="custom-file-input" id="inputGroupFile01"
-                     aria-describedby="inputGroupFileAddon01">
-                   <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
-                 </div>
-               </div>
- 
-             </div>
-               
-              
-              <div class="texto">
-              <label for="texto">Texto</label>
-             
-              <textarea type="text" formControlName="texto" class="form-control rounded-0" id="texto" rows="10"></textarea>
-               </div>
-               <div class="modal-footer">
-                <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
-                <button type="submit" class="btn btn-outline-success" >Guardar</button>
+                accept="image/png, image/jpeg , image/gif"
+                formControlName="imagen"
+              />
+              <label class="custom-file-label" for="imagen">Buscar foto</label>
+            </div>
+
+            <div *ngIf="imagen" class="mt-5">
+              <h5>Vista Previa:</h5>
+              <div>
+                <img
+                  class="image-thumbnail"
+                  style="max-width: 100px"
+                  [src]="imagenMin"
+                  alt=""
+                />
               </div>
-           
-            </form>
+            </div>
           </div>
-        
-        </ng-template>
-    
-        
-        <!-- <pre>{{ closeResult }}</pre> -->
-         
-    
+          <!-- <div class="form-group d-flex justify-content-between">
+                <button type="submit" class="btn btn-outline-success" [disabled]="!imagen" ><i class='bx bx-upload' ></i> Subir</button>
+                <button class="btn btn-ouline-danger" [disabled]="!imagen" (click)="reset()"><i class='bx bx-reset'></i> Reset</button>
+              </div>
+  -->
+        </div>
 
-        
+        <div class="texto">
+          <label for="texto">Texto seccion sobre mi</label>
+
+          <textarea
+            type="text"
+            formControlName="texto"
+            class="form-control rounded-0"
+            id="texto"
+            rows="10"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            id="cancel"
+            class="btn btn-outline-secondary"
+            (click)="modal.dismiss('Cross click')"
+          >
+            Cerrar
+          </button>
+          <button type="submit" class="btn btn-outline-success">Guardar</button>
+        </div>
+      </form>
     </div>
+  </ng-template>
+</div>
 
+<!-- <section class="about" class="about" id="about"> -->
+<section class="container"  id="about"> 
+  
+ 
 
+<div class="row">
+
+        <!-- <div *ngFor="let row of sobreMiData" class="about-text"> -->
+  <div *ngFor="let row of sobreMiData" class="col-6">
+    <div class="titulo-seccion-edit">
+      <h2>{{ row.titulo }}</h2>
+      <div class="contenedor-boton">
+        <button *ngIf= "_auth | async"
+          type="button"
+          class="btn btn-info btn-circle m-1"
+          (click)="open(content)"
+          (click)="llenarForm(row)"
+        >
+          <i class="bx bxs-pencil"></i>
+        </button>
+      </div>
+      <div class="contenedor-boton-borrar">
+        <button *ngIf= "_auth | async"
+        (click)="deleteUsu()"  class="btn btn-danger btn-circle m-1">
+          <i class="bx bxs-trash"></i>
+        </button>
+      </div>
+    </div>
+    <!-- <h5>Developer <span> & Designer</span></h5> -->
+    <h5>{{ row.subtitulo }}</h5>
+    <p>{{ row.sobremi }}</p>
    
+ 
+
+    <app-boton></app-boton>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+          Actualizar contenido sección
+        </h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue" (ngSubmit)="editarSobreMi(row)" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Titulo</label>
+            <input
+              type="text"
+              formControlName="titulo"
+              class="form-control"
+              id="titulo"
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="subtitulo" class="form-label">Subtitulo</label>
+            <input
+              type="text"
+              formControlName="subtitulo"
+              id="subtitulo"
+              class="form-control"
+            />
+          </div>
+
+          <div class="foto-upload">
+            <ngx-spinner type="ball-scale-multiple">
+              <p style="font-size: 20px; color: white">Subiendo imagen</p>
+            </ngx-spinner>
+
+            <label for="exampleFormControlTextarea1">Actualizar  Foto</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <!-- <span class="input-group-text" id="inputGroupFileAddon01"
+                  ><i class="bx bx-upload"></i> Subir</span
+                > -->
+              </div>
+              <div class="custom-file">
+                <input
+                  type="file"
+                  class="form-control"
+                  id="imagen"
+                  #imagenInputFile
+                  (change)="onFileChange($event)"
+                  accept="image/png, image/jpeg , image/gif"
+                  formControlName="imagen"
+                />
+                <label class="custom-file-label" for="imagen"
+                  >Buscar foto</label
+                >
+              </div>
+
+              <div *ngIf="imagen ||  imagenMin" class="mt-5">
+                <h5>Vista Previa:</h5>
+                <div>
+                  <img
+                    class="image-thumbnail"
+                    style="max-width: 100px"
+                    [src]="imagenMin"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- <div class="form-group d-flex justify-content-between">
+              <button
+                type="submit"
+                class="btn btn-outline-success"
+                [disabled]="!imagen"
+              >
+                <i class="bx bx-upload"></i> Subir
+              </button>
+              <button
+                class="btn btn-ouline-danger"
+                [disabled]="!imagen"
+                (click)="reset()"
+              >
+                <i class="bx bx-reset"></i> Reset
+              </button>
+            </div> -->
+          </div>
+
+          <div class="texto">
+            <label for="texto">Texto</label>
+
+            <textarea
+              type="text"
+              formControlName="texto"
+              class="form-control rounded-0"
+              id="texto"
+              rows="10"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="cancel"
+              class="btn btn-outline-secondary"
+              (click)="modal.dismiss('Cross click')"
+            >
+              Cerrar
+            </button>
+            <button type="submit" class="btn btn-outline-success">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <!-- <pre>{{ closeResult }}</pre> -->
+  </div>
+ 
+    <div *ngFor="let row of sobreMiData" class="col-6">
+    <!-- <div *ngFor="let row of sobreMiData" class="about-img"> -->
+      <div >
+        <img class="img-fluid " src="{{ row.imagenurl }}" alt="" />
+        
+      </div>
+      
+    
+
+
+    
+
+
+
+
+  </div>
+
+</div>
 
 </section>
- 

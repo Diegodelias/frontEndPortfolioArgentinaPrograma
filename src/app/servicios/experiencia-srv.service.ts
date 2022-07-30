@@ -4,8 +4,11 @@ import { map } from 'rxjs/operators';
 import { ExperienciaModel } from '../modelos/experienciaModel';
 import { Observable } from 'rxjs/internal/Observable';
 
-
+const apiUrlBorrar =  'http://localhost:8080/trabajos/acciones/borrar';
 const apiUrlUpdate =  'http://localhost:8080/trabajos';
+const apiUrlUpdate2 =  'http://localhost:8080/trabajos/acciones/actualizar/sincambios';  
+const apiUrlUpdate3 =  'http://localhost:8080/trabajos/acciones/actualizar';  
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,15 +44,26 @@ export class ExperienciaSrvService {
   //   }
 
   update(id, data): Observable<any> {
-    return this.httpClient.put(`${apiUrlUpdate}/${id}`, data);
+    return this.httpClient.put(`${apiUrlUpdate3}/${id}`, data);
   }
+
+  public updateNull(id, data):Observable<any>{
+    return this.httpClient.put<any>(`${apiUrlUpdate2}/${id}`,data);
+    //return this.http.put<any>(this.url+`update/${id}`,usu);
+  }   
+  // get(id): Observable<any> {
+  //   return this.httpClient.get(`${apiUrlUpdate}/${id}`);
+  // }
+
+
+
 
   get(id): Observable<any> {
     return this.httpClient.get(`${apiUrlUpdate}/${id}`);
   }
 
   deleteExperiencia(id: number): Observable<Object>{
-    return this.httpClient.delete(`${apiUrlUpdate}/${id}`);
+    return this.httpClient.delete(`${apiUrlBorrar}/${id}`);
   }
 
 }

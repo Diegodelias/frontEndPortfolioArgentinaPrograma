@@ -6,9 +6,12 @@
         >
     </circle-progress>
     <div class="pr-skill-name">{{_skillnombre}}</div>
-    
-    <div class="contenedor-boton"> <button type="button" class="btn btn-info btn-circle m-1"  (click)="open(content)" (click)="llenarForm(_completo)" ><i class='bx bxs-pencil'></i></button></div>
-    <div class="contenedor-boton-borrar"> <button  type="button" class="btn btn-danger btn-circle m-1" (click)="deleteSkill(_id)" ><i class='bx bxs-trash'></i></button></div>
+    <div class="d-flex flex-row justify-content-between w-50">
+      <div class="contenedor-boton" *ngIf= "_auth | async"> <button type="button" class="btn btn-info btn-circle m-1"  (click)="open(content)" (click)="llenarForm(_completo)" ><i class='bx bxs-pencil'></i></button></div>
+      <div class="contenedor-boton-borrar" *ngIf= "_auth | async"> <button  type="button" class="btn btn-danger btn-circle m-1" (click)="deleteSkill(_id)" ><i class='bx bxs-trash'></i></button></div>
+
+    </div>
+   
 </div>
 
 

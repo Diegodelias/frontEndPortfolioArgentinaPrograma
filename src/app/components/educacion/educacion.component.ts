@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 import { EducacionModel } from '../../modelos/educacionModel';
 import { EduSrvService } from '../../servicios/edu-srv.service';
+import { ImagenService} from '../../servicios/imagen.service'
+import { NgxSpinnerService } from 'ngx-spinner';
+
+
 
 
 @Component({
@@ -12,13 +16,21 @@ import { EduSrvService } from '../../servicios/edu-srv.service';
 })
 export class EducacionComponent implements OnInit {
 
+  @ViewChild('imagenInputFile',{static: false}) imagenFile: ElementRef;
+
   formValue !: UntypedFormGroup;
   educacionModelObj : EducacionModel= new EducacionModel();
   educacionData : EducacionModel[]=[];
+  imagen: any;
+  imagenMin: any;
+  dataActual = null;
+  @Input('auth') _auth:any;
+ 
   
   closeResult = '';
 
-  constructor(private eduSrv : EduSrvService, private modalService: NgbModal ) { }
+  constructor(private eduSrv : EduSrvService, private modalService: NgbModal ,private imagenService:ImagenService,
+    private spinner: NgxSpinnerService, private formbuilder:UntypedFormBuilder ) { }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -26,7 +38,9 @@ export class EducacionComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    
+    this.formValue.reset();
+    this.reset();
+   
    
 
   }
@@ -57,6 +71,40 @@ export class EducacionComponent implements OnInit {
     this.GetDatosEducacion()
   }
 
+  onFileChange(event) {
+   
+    this.imagen = event.target.files[0];
+    const fr = new FileReader();
+    fr.onload = (evento: any) => {
+      this.imagenMin = evento.target.result;
+    };
+    fr.readAsDataURL(this.imagen);
+    // this.ngOnInit()
+  }
+
+  onUpload(): void {
+    this.spinner.show();
+    
+    this.imagenService.upload(this.imagen).subscribe(
+      data => {
+        this.spinner.hide();
+        // this.router.navigate(['/']);
+      },
+      err => {
+        alert(err.error.mensaje);
+        this.spinner.hide();
+        this.reset();
+      }
+    );
+  }
+
+  reset(): void {
+    this.imagen = '';
+    this.imagenMin = '';
+    this.imagenFile.nativeElement.value = '';
+  }
+
+
   GetDatosEducacion() : void {
     
     this. eduSrv.getEdu()
@@ -74,13 +122,23 @@ export class EducacionComponent implements OnInit {
 
 
   postEdu(){
-    this.educacionModelObj.titulonombre = this.formValue.value.titulonombre;
-    this.educacionModelObj.nombreInstitucion = this.formValue.value.nombreInstitucion;
-    this.educacionModelObj.periodo = this.formValue.value.periodo;
-    this.educacionModelObj.institucion_url = this.formValue.value.institucion_url ;
-    this.educacionModelObj.contenido = this.formValue.value.contenido;
-   
-    this.eduSrv.postEdu(this.educacionModelObj)
+    // this.educacionModelObj.titulonombre = this.formValue.value.titulonombre;
+    // this.educacionModelObj.nombreInstitucion = this.formValue.value.nombreInstitucion;
+    // this.educacionModelObj.periodo = this.formValue.value.periodo;
+    // this.educacionModelObj.institucion_url = this.formValue.value.institucion_url ;
+    // this.educacionModelObj.contenido = this.formValue.value.contenido;
+
+    const formData = new FormData();
+    
+    formData.append('titulonombre',this.formValue.value.titulonombre);
+    formData.append('nombreInstitucion',this.formValue.value.nombreInstitucion);
+    formData.append('periodo',this.formValue.value.periodo);
+    formData.append('institucion_url',this.formValue.value.institucion_url);
+    formData.append('contenido',this.formValue.value.contenido);
+    formData.append('document', this.imagen);
+
+    
+    this.eduSrv.postEdu(formData)
     .subscribe(res=>{
       console.log(res);
       let ref = document.getElementById('cancel');

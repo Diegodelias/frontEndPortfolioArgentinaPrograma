@@ -22,8 +22,11 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {  FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { AuthInterceptor } from './auth.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -64,11 +67,17 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    BrowserAnimationsModule
 
 
   ],
-  providers: [BsModalService ],
+  // providers: [BsModalService],
+  // providers: [{
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: AuthInterceptor,
+  //   multi: true,
+  // } , BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

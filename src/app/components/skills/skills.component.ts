@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SkillSrvService  } from '../../servicios/skill-srv.service';
 import { SkillsModel } from '../../modelos/skillsModels';
 import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
@@ -16,6 +16,7 @@ export class SkillsComponent implements OnInit {
   formValue !: UntypedFormGroup;
   skillsModelObj : SkillsModel= new SkillsModel();
   skillsData : SkillsModel[]=[];
+  @Input('auth') _auth :any;
   
   closeResult = '';
 

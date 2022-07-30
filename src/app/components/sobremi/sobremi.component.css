@@ -34,8 +34,8 @@ span {
     display: grid;
     grid-template-columns: repeat(2,2fr);
     align-items:center;
-    grid-gap:2rem;
-    padding-top:3.5rem;
+    grid-gap:1rem;
+    padding-top:1rem;
     padding-bottom:5rem;
     min-height: 100vh;
     width: 100%;
@@ -113,3 +113,22 @@ span {
 .texto {
     margin-top:1rem;
 }
+
+
+
+.btn-circle {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding: 0; 
+  
+    line-height: 1.428571429;
+    border-radius: 50px;
+    
+  }
+ 
+  i {
+    margin-top: 5px;
+    font-size: 20px;
+
+  }

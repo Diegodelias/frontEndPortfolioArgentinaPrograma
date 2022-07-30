@@ -1,18 +1,18 @@
 
-    <div class="main-title">
+    <div class="main-title" id="educacion">
         <h2>Mis <span>conocimientos</span> <span class="bg-text">mis estudios </span></h2>
         
-      <div>  <button type="button" class="btn btn-info btn-circle m-1" (click)="open(content)" ><i class='bx bxs-pencil'></i></button></div>  
+      <div *ngIf= "_auth | async" > <button type="button" class="btn btn-success btn-circle m-1" (click)="open(content)" ><i class='bx bx-plus' ></i></button></div>  
     </div>
 
-    <section>
+    <section class="container" >
  
        
 
-        <div class="timeline">
-        <app-edu-item (GetDatosEducacion)="GetDatosEducacion()"  *ngFor="let edu of educacionData" [titulonombre]="edu.titulonombre" 
+        <div class="row">
+        <app-edu-item class="col-6" Style ="margin-top:1.5rem  "  [auth]="_auth" (GetDatosEducacion)="GetDatosEducacion()"  *ngFor="let edu of educacionData" [titulonombre]="edu.titulonombre" 
         [nombreInstitucion]= "edu.nombreInstitucion" [periodo] = "edu.periodo" [contenido]="edu.contenido" [id]="edu.educacionId"
-        [completo]="edu"></app-edu-item>
+        [completo]="edu" [imagenurl]="edu.imagenurl"></app-edu-item>
      
     </div>
        
@@ -57,10 +57,10 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="formValue" (ngSubmit)="postEdu()"  >
+        <form [formGroup]="formValue" (ngSubmit)="postEdu()"  enctype="multipart/form-data" >
           <div class="mb-3">
             <label for="titulonombre" class="form-label" >Titulo Nombre</label>
-            <input type="text" formControlName="titulonombre" class="form-control" id="titulonombre" aria-describedby="emailHelp" >
+            <input type="text" formControlName="titulonombre" class="form-control" id="titulonombre" >
            
           </div>
           <div class="mb-3">
@@ -82,18 +82,38 @@
         </div>
 
           <div class="foto-upload">
+            <ngx-spinner type="ball-scale-multiple">
+              <p style="font-size: 20px; color: white">Subiendo imagen</p>
+            </ngx-spinner>
 
               <label for="exampleFormControlTextarea1">Subir Foto logo institución</label>
               <div class="input-group">
-              
+<!--               
                <div class="input-group-prepend">
                  <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
-               </div>
+               </div> -->
                <div class="custom-file">
-                 <input type="file" formControlName="logo_empresa"  class="custom-file-input" id="inputGroupFile01"
-                   aria-describedby="inputGroupFileAddon01">
-                 <label class="custom-file-label" for="inputGroupFile01">Buscar foto</label>
+                 <input type="file" formControlName="imagen"  class="form-control" id="imagen"
+                 #imagenInputFile
+                 (change)="onFileChange($event)"
+                 accept="image/png, image/jpeg , image/gif"
+                  >
+                 <label class="custom-file-label" for="imagen">Buscar foto</label>
                </div>
+
+
+               <div *ngIf="imagen" class="mt-5">
+                <h5>Vista Previa:</h5>
+                <div>
+                  <img
+                    class="image-thumbnail"
+                    style="max-width: 100px"
+                    [src]="imagenMin"
+                    alt=""
+                  />
+                </div>
+              </div>
+
              </div>
 
            </div>

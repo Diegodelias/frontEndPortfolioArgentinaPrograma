@@ -6,7 +6,10 @@ import { catchError } from 'rxjs/operators';
 import {  throwError } from 'rxjs';
 import { HeaderModel } from '../modelos/headerModel';
 
-const apiUrlUpdate =  'http://localhost:8080/usuarios';
+
+const apiUrlUpdateNuevo2 =  'http://localhost:8080/usuarios/acciones/update/sincambios';
+const apiUrlUpdate =  'http://localhost:8080/usuarios/acciones/update';
+const apiUrlUpdateBorrar =  'http://localhost:8080/usuarios/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,11 +32,11 @@ export class HeadersrvService {
   //   }
 
   public update(id, data): Observable<any> {
-      return this.httpClient.put(`${apiUrlUpdate}/${id}`, data);
+      return this.httpClient.put(`${apiUrlUpdateNuevo2}/${id}`, data);
     }
 
     get(id): Observable<any> {
-      return this.httpClient.get(`${apiUrlUpdate}/${id}`);
+      return this.httpClient.get(`${this.apiUrl}/${id}`);
     }
 
   
@@ -52,4 +55,11 @@ export class HeadersrvService {
     return throwError(
       'Something bad happened; please try again later.');
   };
+
+
+  
+  deleteSobremi(id: number): Observable<Object>{
+    return this.httpClient.delete(`${apiUrlUpdateBorrar}/${id}`);
+  }
+
 }

@@ -7,6 +7,8 @@ import { SkillsModel  } from '../modelos/skillsModels';
 
 
 const apiUrlUpdate =  'http://localhost:8080/skills';
+const apiUrlUpdate2 =  'http://localhost:8080/skills/acciones/editar';
+const apiUrlBorrar =  'http://localhost:8080/skills/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +36,7 @@ export class SkillSrvService {
   //   }
 
   update(id, data): Observable<any> {
-    return this.httpClient.put(`${apiUrlUpdate}/${id}`, data);
+    return this.httpClient.put(`${apiUrlUpdate2}/${id}`, data);
   }
 
   get(id): Observable<any> {
@@ -42,7 +44,7 @@ export class SkillSrvService {
   }
 
   deleteSkill(id: number): Observable<Object>{
-    return this.httpClient.delete(`${apiUrlUpdate}/${id}`);
+    return this.httpClient.delete(`${apiUrlBorrar}/${id}`);
   }
 
 

@@ -6,13 +6,63 @@
     <ul class="navlist">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
+        <li><a href="#educacion">Educacion</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#blog">Blog</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="h-btn">
         <a href="#" class="sign-up">Registro</a>
-        <a href="#" class="sign-in">Login</a>
+       
+        <a href="#" class="sign-in" *ngIf= "!(_auth | async)"  (click)="open(content)">Login</a>
+        <a href="#" class="sign-in"  style="cursor:pointer"  *ngIf= "_auth | async" (click)="logout()">Logout</a>
     </div>
  </header>
+
+
+     
+<ng-template #content let-modal>
+    <div class="modal-header ">
+      <h4 class="modal-title" id="modal-basic-title">Ingresar usuario y password</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <!-- <form [formGroup]="formValue" (ngSubmit)="postProyecto()"  enctype="multipart/form-data" > -->
+        <form  [formGroup]="formValue"   (ngSubmit)="submitForm()"  >
+        
+        <div class="mb-3">
+          <label for="username" class="form-label" >Nombre de usuario</label>
+          <input type="text" formControlName="username" class="form-control" id="username"   >
+         
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password </label>
+          <input type="text" formControlName="password"  type="password"   id="password" class="form-control" >
+        </div>
+
+
+      
+       
+     
+
+         
+      <!-- <div class="mb-3">
+        <label for="linkvideo" class="form-label">Link a video demo del proyecto </label>
+        <input type="text" formControlName="linkvideo"   id="linkvideo" class="form-control" >
+      </div> -->
+    
+            
+
+            
+       
+        
+       
+         <div class="modal-footer">
+          <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+          <button type="submit" class="btn btn-outline-success" >Login</button>
+        </div>
+     
+      </form>
+    </div>
+  
+  </ng-template>

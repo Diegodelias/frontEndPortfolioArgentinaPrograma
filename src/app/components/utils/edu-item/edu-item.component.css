@@ -20,6 +20,20 @@
     justify-content: center;
 }
 
+
+.tl-icon_img {
+    position:absolute;
+    left: -27px;
+    top:0;
+    background-color: var(--main-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .tl-duration{
     padding: .2rem .6rem;
     background-color: var(--other-color);
@@ -38,12 +52,36 @@ h5 {
     text-transform: uppercase;
     font-size: 1.3rem;
     font-weight:600;
+
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 0; 
+  
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+ 
+  i {
+
+    font-size: 12px;
+
+  }
+  .contenedor-boton , .contenedor-boton-borrar{
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    
+   
+   
 }
 
 #span2{
-    color: var(--other-color);
+    
     font-weight: 500;
     font-size: 1.2rem;
+    color: var(--main-color);
 
 }
 
@@ -58,7 +96,7 @@ h5 {
 
 
 .contenedor-boton , .contenedor-boton-borrar{
-    margin-top: 0.5rem;
+    margin-bottom: 1rem;
     margin-left: 1.5rem;
 }
 
@@ -87,4 +125,13 @@ h5 {
 
 .texto {
     margin-top:1rem;
+}
+
+
+.logo{
+    border-radius: 50% ;
+    clip-path:circle();
+    width:2rem;
+    height:2rem;
+    display: inline-block;
 }
