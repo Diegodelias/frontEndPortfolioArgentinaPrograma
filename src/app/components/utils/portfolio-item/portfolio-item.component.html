@@ -1,0 +1,113 @@
+
+
+    <div class="portfolio-item">
+
+        <div class="image">
+            <img src="{{_imagenurl}}" alt="">
+        </div>
+        <div class="hover-item">
+            <h3>{{_nombre_proyecto}}</h3>
+            <h3>{{_demourl}}</h3>
+            <div class="icons" >
+                <a href="{{_demourl}}"  class="icon" target="_blank">
+                    <i class='bx bxl-github'></i>
+                </a>
+                <a href="{{_linkvideo}}" class="icon" target="_blank">
+                    <i class='bx bxl-youtube' ></i>
+                </a>
+                <a href="{{_githuburl}}" class="icon" target="_blank">
+                    <i class='bx bxl-github'></i>
+                </a>
+
+                
+
+            </div>
+            
+           <div class="d-flex flex-row mt-3 ">
+            <div  *ngIf= "_auth | async" class="contenedor-boton"> <button type="button"  id="editar" class="btn btn-info btn-circle m-1  "  (click)="open(content)" (click)="llenarForm( _completo)" ><i class='bx bxs-pencil'></i></button></div>
+            <div  *ngIf= "_auth | async" class="contenedor-boton-borrar"> <button  id="borrar" type="button" class="btn btn-danger btn-circle m-1" (click)="deleteSkill(_id)" ><i class='bx bxs-trash'></i></button></div>
+
+          </div>
+  
+        </div>
+
+        
+
+
+
+    <ng-template #content let-modal>
+        <div class="modal-header ">
+          <h4 class="modal-title" id="modal-basic-title">Agregar nuevo  proyecto</h4>
+          <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="formValue"  (ngSubmit)="editarProyecto(_completo)" novalidate enctype="multipart/form-data" >
+            <div class="mb-3">
+              <label for="nombreproyecto" class="form-label" >Nombre proyecto</label>
+              <input type="text" formControlName="nombreproyecto" class="form-control" id="nombreproyecto" >
+             
+            </div>
+
+            <div class="mb-3">
+              <label for="demourl" class="form-label" >Url demo del proyecto</label>
+              <input type="text" formControlName="demourl" class="form-control" id="demourl" >
+             
+            </div>
+
+           
+            <div class="mb-3">
+              <label for="githuburl" class="form-label" >Url a código proyecto en github</label>
+              <input type="text" formControlName="githuburl" class="form-control" id="githuburl" >
+             
+            </div>
+
+            <div class="mb-3">
+              <label for="linkvideo" class="form-label" >Link a video demo del proyecto</label>
+              <input type="text" formControlName="linkvideo" class="form-control" id="linkvideo" >
+             
+            </div>
+
+            <div class="foto-upload">
+              <ngx-spinner type="ball-scale-multiple">
+                <p style="font-size: 20px; color: white">Subiendo imagen </p>
+              </ngx-spinner>
+              <label for="exampleFormControlTextarea1">Subir Foto del proyecto</label>
+              <div class="input-group">
+
+               <div class="custom-file">
+                 <input type="file" formControlName="imagen"  class="form-control" id="imagen" #imagenInputFile (change)="onFileChange($event)" 
+                   accept="image/png, image/jpeg , image/gif">
+                 <label class="custom-file-label" for="imagen">Elige una imagen</label>
+               </div>
+
+         
+              
+             </div>
+             <div *ngIf="imagen ||  imagenMin" class="mt-5">
+              <h5>Vista Previa:</h5>
+              <div>
+                <img
+                  class="image-thumbnail"
+                  style="max-width: 100px"
+                  [src]="imagenMin"
+                  alt=""
+                />
+              </div>
+            </div>
+
+           </div>
+             <div class="modal-footer">
+              <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+              <button type="submit" class="btn btn-outline-success" >Guardar</button>
+            </div>
+         
+                
+    
+                
+           
+            
+          
+          </form>
+        </div>
+      
+      </ng-template>

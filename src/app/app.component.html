@@ -1,3 +1,14 @@
-
-
+<app-navbar [auth]=" authService.isLoggedIn$" ></app-navbar>
 <app-header></app-header>
+
+
+
+  
+
+<app-sobremi [auth]=" authService.isLoggedIn$"></app-sobremi>
+<app-experiencia [auth]=" authService.isLoggedIn$"></app-experiencia>
+
+<!-- <app-experiencia></app-experiencia>  -->
+<app-educacion [auth]="authService.isLoggedIn$"></app-educacion>
+<app-skills [auth]=" authService.isLoggedIn$"></app-skills>
+<app-proyectos [auth]=" authService.isLoggedIn$"></app-proyectos>

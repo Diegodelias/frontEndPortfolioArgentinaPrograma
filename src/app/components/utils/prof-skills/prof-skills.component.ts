@@ -1,0 +1,141 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {UntypedFormBuilder, UntypedFormControl, UntypedFormGroup} from '@angular/forms';
+import { SkillSrvService  } from '../../../servicios/skill-srv.service';
+import { SkillsModel } from '../../../modelos/skillsModels';
+
+@Component({
+  selector: 'app-prof-skills',
+  templateUrl: './prof-skills.component.html',
+  styleUrls: ['./prof-skills.component.css']
+})
+export class ProfSkillsComponent implements OnInit {
+
+  skillModelObj: SkillsModel = new SkillsModel();
+
+
+  
+  experienciaData : SkillsModel[]=[];
+
+  constructor(private formbuilder:UntypedFormBuilder,private modalService: NgbModal,private skillsrv:SkillSrvService ) { }
+
+  
+
+  @Input('skillporcentaje') _skillporcentaje:any;
+  @Input('skillnombre') _skillnombre:string;
+  @Input('completo') _completo:any;
+  @Input('id') _id:number;
+  @Output("GetDatosSkills") GetDatosSkills: EventEmitter<any> = new EventEmitter();
+  @Input('auth') _auth :any;
+  closeResult = '';
+  formValue !: UntypedFormGroup;
+
+  dataActual = null;
+
+  ngOnInit(): void {
+    this.formValue = new UntypedFormGroup({
+      skillnombre: new UntypedFormControl(''),
+      tipo: new UntypedFormControl(''),
+      skillporcentaje : new UntypedFormControl('')
+    
+    })
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    
+    this.formValue.controls['subtitulo'].setValue("nada");
+
+  }
+  
+
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+
+  
+  llenarForm(row) {
+
+    this.formValue.controls['skillnombre'].setValue(row.skillnombre);
+    this.formValue.controls['tipo'].setValue(row.tipo);
+    this.formValue.controls['skillporcentaje'].setValue(row.skillporcentaje);
+  
+   
+   
+
+   
+
+
+  }
+
+  
+  editarSkill(row: any) {
+   
+  
+    this.skillModelObj.skillnombre =  this.formValue.value.skillnombre; 
+    this.skillModelObj.skillporcentaje =  this.formValue.value.skillporcentaje;
+    this.skillModelObj.tipo =  this.formValue.value.tipo;
+   
+    
+
+  
+    
+    this.skillsrv.update( this._id , this.skillModelObj  )
+    .subscribe(res=>{
+      console.log("objeto actualizar" ,   this.skillModelObj);
+      console.log(res);
+      alert("Experiencia actualizada correctamente");
+      let ref = document.getElementById('cancel');
+      ref?.click();
+      this.GetDatosSkills.emit()
+      this.formValue.reset();
+    },
+    err=>{
+      console.log("objeto actualizar" ,   this.skillModelObj);
+      alert("Hubo un error")
+    }
+    );
+    
+
+  }
+
+  getDataSkill(id): void {
+    
+    this.skillsrv.get(id)
+      .subscribe(
+        data => {
+          this.dataActual = data;
+          console.log('este es el viejo ' , data);
+        },
+        error => {
+          console.log(error , 'este es el error del viejo');
+        });
+  }
+ 
+  deleteSkill(id: number){
+ 
+    this.skillsrv.deleteSkill(id ).subscribe( data => {
+     
+      this.GetDatosSkills.emit()
+    })
+    
+
+    // this.GetDatosExperiencia.emit()
+    // this.getDataExperiencia(this._id);
+   
+
+  }
+
+
+}

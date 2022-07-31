@@ -30,9 +30,11 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
+              
             ],
-            "scripts": []
+            "scripts": ["src/assets/customJs/script.js" , "src/assets/customJs/app.js" , "src/assets/customJs/lib/stats.js" , "src/assets/customJs/circle-progress.js" , "node_modules/jquery/dist/jquery.min.js" ]
           },
           "configurations": {
             "production": {
@@ -104,6 +106,5 @@
         }
       }
     }
-  },
-  "defaultProject": "frontPortfolio"
+  }
 }

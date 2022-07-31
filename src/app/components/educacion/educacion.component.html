@@ -1,0 +1,139 @@
+
+    <div class="main-title" id="educacion">
+        <h2>Mis <span>conocimientos</span> <span class="bg-text">mis estudios </span></h2>
+        
+      <div *ngIf= "_auth | async" > <button type="button" class="btn btn-success btn-circle m-1" (click)="open(content)" ><i class='bx bx-plus' ></i></button></div>  
+    </div>
+
+    <section class="container" >
+ 
+       
+
+        <div class="row">
+        <app-edu-item class="col-6" Style ="margin-top:1.5rem  "  [auth]="_auth" (GetDatosEducacion)="GetDatosEducacion()"  *ngFor="let edu of educacionData" [titulonombre]="edu.titulonombre" 
+        [nombreInstitucion]= "edu.nombreInstitucion" [periodo] = "edu.periodo" [contenido]="edu.contenido" [id]="edu.educacionId"
+        [completo]="edu" [imagenurl]="edu.imagenurl"></app-edu-item>
+     
+    </div>
+       
+
+
+  <!-- Modal -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+    </section>
+
+
+    
+    
+    <ng-template #content let-modal>
+      <div class="modal-header ">
+        <h4 class="modal-title" id="modal-basic-title">Crear nueva formación</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue" (ngSubmit)="postEdu()"  enctype="multipart/form-data" >
+          <div class="mb-3">
+            <label for="titulonombre" class="form-label" >Titulo Nombre</label>
+            <input type="text" formControlName="titulonombre" class="form-control" id="titulonombre" >
+           
+          </div>
+          <div class="mb-3">
+            <label for="nombreInstitucion" class="form-label">Nombre Institución</label>
+            <input type="text" formControlName="nombreInstitucion"   id="nombreInstitucion" class="form-control" >
+          </div>
+
+
+        
+         
+         <div class="mb-3">
+          <label for="periodo" class="form-label">Periodo </label>
+          <input type="text" formControlName="periodo"   id="periodo" class="form-control" >
+        </div>
+        
+        <div class="mb-3">
+          <label for="institucion_url" class="form-label">Pagina web de la institución </label>
+          <input type="text" formControlName="institucion_url"   id="institucion_url" class="form-control" >
+        </div>
+
+          <div class="foto-upload">
+            <ngx-spinner type="ball-scale-multiple">
+              <p style="font-size: 20px; color: white">Subiendo imagen</p>
+            </ngx-spinner>
+
+              <label for="exampleFormControlTextarea1">Subir Foto logo institución</label>
+              <div class="input-group">
+<!--               
+               <div class="input-group-prepend">
+                 <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+               </div> -->
+               <div class="custom-file">
+                 <input type="file" formControlName="imagen"  class="form-control" id="imagen"
+                 #imagenInputFile
+                 (change)="onFileChange($event)"
+                 accept="image/png, image/jpeg , image/gif"
+                  >
+                 <label class="custom-file-label" for="imagen">Buscar foto</label>
+               </div>
+
+
+               <div *ngIf="imagen" class="mt-5">
+                <h5>Vista Previa:</h5>
+                <div>
+                  <img
+                    class="image-thumbnail"
+                    style="max-width: 100px"
+                    [src]="imagenMin"
+                    alt=""
+                  />
+                </div>
+              </div>
+
+             </div>
+
+           </div>
+             
+              
+
+              
+         
+          
+          <div class="texto">
+          <label for="contenido">Descripción </label>
+         
+          <textarea type="text" formControlName="contenido" class="form-control rounded-0" id="contenido" rows="10"></textarea>
+           </div>
+           <div class="modal-footer">
+            <button type="button" id="cancel" class="btn btn-outline-secondary" (click)="modal.dismiss('Cross click')">Cerrar</button>
+            <button type="submit" class="btn btn-outline-success" >Guardar</button>
+          </div>
+       
+        </form>
+      </div>
+    
+    </ng-template>
