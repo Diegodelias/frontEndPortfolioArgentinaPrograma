@@ -3,15 +3,15 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { map } from 'rxjs/operators';
 import { EducacionModel  } from '../modelos/educacionModel';
 import { Observable } from 'rxjs/internal/Observable';
-const apiUrlUpdate2 =  'http://localhost:8080/educacion/acciones/actualizar/sincambios'; 
-const apiUrlUpdate =  'http://localhost:8080/educacion/acciones/actualizar';
-const apiUrlBorrar =  'http://localhost:8080/educacion/acciones/borrar';
+const apiUrlUpdate2 =  'https://portfoliobackdiegodelias.herokuapp.com/educacion/acciones/actualizar/sincambios'; 
+const apiUrlUpdate =  'https://portfoliobackdiegodelias.herokuapp.com/educacion/acciones/actualizar';
+const apiUrlBorrar =  'https://portfoliobackdiegodelias.herokuapp.com/educacion/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
 export class EduSrvService {
    
-  private apiUrl: string = 'http://localhost:8080/educacion';
+  private apiUrl: string = 'https://portfoliobackdiegodelias.herokuapp.com/educacion';
 
 
   constructor(private httpClient : HttpClient) { }

@@ -4,16 +4,20 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable } from 'rxjs/internal/Observable';
 import { ProyectoModel } from '../modelos/proyectoModel';
 
-const apiUrlUpdate2 =  'http://localhost:8080/proyectos/acciones/update/sincambios';  
-const apiUrlUpdate =  'http://localhost:8080/proyectos/acciones/update';
-const apiUrlBorrar =  'http://localhost:8080/proyectos/acciones/borrar';
+// const apiUrlUpdate2 =  'http://localhost:8080/proyectos/acciones/update/sincambios';  
+// const apiUrlUpdate =  'http://localhost:8080/proyectos/acciones/update';
+// const apiUrlBorrar =  'http://localhost:8080/proyectos/acciones/borrar';
+
+const apiUrlUpdate2 =  'https://portfoliobackdiegodelias.herokuapp.com/proyectos/acciones/update/sincambios';  
+const apiUrlUpdate =  'https://portfoliobackdiegodelias.herokuapp.com/proyectos/acciones/update';
+const apiUrlBorrar =  'https://portfoliobackdiegodelias.herokuapp.com/proyectos/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
 export class ProyectossrvService {
 
   
-  private apiUrl: string = 'http://localhost:8080/proyectos';
+  private apiUrl: string = 'https://portfoliobackdiegodelias.herokuapp.com/proyectos';
 
   constructor(private httpClient : HttpClient) { }
 

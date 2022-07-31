@@ -28,32 +28,10 @@ export class AuthService {
     this._isLoggedIn$.next(!!this.token);
   }
 
-  // authRequest:any={
-  //   "userName":"usuarioUno",
-  //   "password":"123456"
-  // };
 
-
-  // login(request) {
-  //    console.log("lpqtp", request);
-  //   // console.log("Request" , request)
-  //   // return this.jwtService.generateToken({request}).pipe(
-  //   //   tap((response: any)=>{
-  //   //     console.log(response.token)
-  //   //   })
-  //   // );
-  //   return this.jwtService.generateToken(request).pipe(
-  //     tap((response: any) => {
-  //       console.log("verga" , response)
-  //       this._isLoggedIn$.next(true);
-  //       console.log("porornga" , response.token);
-  //       localStorage.setItem(this.TOKEN_NAME, response.token);
-     
-  //     })
-  //   );
-  // }
 
   login(username: string, password: string) {
+    console.log("entrooo");
     return this.apiService.login(username, password).pipe(
       tap((response: any) => {
         this._isLoggedIn$.next(true);

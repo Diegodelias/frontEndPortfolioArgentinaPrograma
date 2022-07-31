@@ -7,18 +7,22 @@ import {  throwError } from 'rxjs';
 import { SobremiModel } from '../components/sobremi/sobremiModel';
 import { JwtClientService } from './jwt-client.service';
 
-
-const apiUrlUpdate =  'http://localhost:8080/usuarios';
-const apiUrlUpdateNuevo2 =  'http://localhost:8080/usuarios/acciones/update/sincambios';
-const apiUrlUpdateNuevo =  'http://localhost:8080/usuarios/acciones/update';
-const apiUrlUpdateBorrar =  'http://localhost:8080/usuarios/acciones/borrar';
+// https://portfoliobackdiegodelias.herokuapp.com/
+// const apiUrlUpdate =  'http://localhost:8080/usuarios';
+// const apiUrlUpdateNuevo2 =  'http://localhost:8080/usuarios/acciones/update/sincambios';
+// const apiUrlUpdateNuevo =  'http://localhost:8080/usuarios/acciones/update';
+// const apiUrlUpdateBorrar =  'http://localhost:8080/usuarios/acciones/borrar';
+const apiUrlUpdate =  'https://portfoliobackdiegodelias.herokuapp.com/usuarios';
+const apiUrlUpdateNuevo2 =  'https://portfoliobackdiegodelias.herokuapp.com/usuarios/acciones/update/sincambios';
+const apiUrlUpdateNuevo =  'https://portfoliobackdiegodelias.herokuapp.com/usuarios/acciones/update';
+const apiUrlUpdateBorrar =  'https://portfoliobackdiegodelias.herokuapp.com/usuarios/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  imagenUrl = 'http://localhost:8080/cloudinary/';
+  imagenUrl = 'https://portfoliobackdiegodelias.herokuapp/cloudinary/';
   
-  private apiUrl: string = 'http://localhost:8080/usuarios';
+  private apiUrl: string = 'https://portfoliobackdiegodelias.herokuapp.com/usuarios';
   
 
   constructor(private httpClient : HttpClient   , private jwt :  JwtClientService) { }
@@ -66,7 +70,7 @@ export class ApiService {
   };
 
   login(username: string, password: string) {
-
+    console.log("eyyyyyyyy")
     let req = { "userName" : username , "password" : password }
     return this.jwt.generateToken(req);
     

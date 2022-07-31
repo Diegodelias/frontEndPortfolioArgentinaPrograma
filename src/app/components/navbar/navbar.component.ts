@@ -83,7 +83,7 @@ logout() {
     )
      .subscribe((response) => {
 
-      console.log("la concha de tu viejkaaa" , response);
+    
       
       let ref = document.getElementById('cancel');
       ref?.click();
@@ -91,7 +91,10 @@ logout() {
       this.ngOnInit()
 
         // this.router.navigate(['/dashboard']);
-      });
+      }); err=>{
+      alert("Algo saló mal")
+    }
+      
 
   
   }

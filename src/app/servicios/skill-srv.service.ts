@@ -6,15 +6,20 @@ import { SkillsModel  } from '../modelos/skillsModels';
 
 
 
-const apiUrlUpdate =  'http://localhost:8080/skills';
-const apiUrlUpdate2 =  'http://localhost:8080/skills/acciones/editar';
-const apiUrlBorrar =  'http://localhost:8080/skills/acciones/borrar';
+const apiUrlUpdate =  'https://portfoliobackdiegodelias.herokuapp.com/skills';
+const apiUrlUpdate2 =  'https://portfoliobackdiegodelias.herokuapp.com/skills/acciones/editar';
+const apiUrlBorrar =  'https://portfoliobackdiegodelias.herokuapp.com/skills/acciones/borrar';
+
+// const apiUrlUpdate =  'http://localhost:8080/skills';
+// const apiUrlUpdate2 =  'http://localhost:8080/skills/acciones/editar';
+// const apiUrlBorrar =  'http://localhost:8080/skills/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
 export class SkillSrvService {
 
-  private apiUrl: string = 'http://localhost:8080/skills';
+  // private apiUrl: string = 'http://localhost:8080/skills';
+  private apiUrl: string = 'https://portfoliobackdiegodelias.herokuapp.com/skills';
 
          
 

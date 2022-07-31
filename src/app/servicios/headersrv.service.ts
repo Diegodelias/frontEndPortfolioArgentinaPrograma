@@ -7,9 +7,9 @@ import {  throwError } from 'rxjs';
 import { HeaderModel } from '../modelos/headerModel';
 
 
-const apiUrlUpdateNuevo2 =  'http://localhost:8080/usuarios/acciones/update/sincambios';
-const apiUrlUpdate =  'http://localhost:8080/usuarios/acciones/update';
-const apiUrlUpdateBorrar =  'http://localhost:8080/usuarios/acciones/borrar';
+const apiUrlUpdateNuevo2 =  'https://portfoliobackdiegodelias.herokuapp.com/usuarios/acciones/update/sincambios';
+const apiUrlUpdate =  'https://portfoliobackdiegodelias.herokuapp.com/usuarios/acciones/update';
+const apiUrlUpdateBorrar =  'https://portfoliobackdiegodelias.herokuapp.com/usuarios/acciones/borrar';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +17,7 @@ export class HeadersrvService {
 
 
 
-  private apiUrl: string = 'http://localhost:8080/usuarios';
+  private apiUrl: string = 'https://portfoliobackdiegodelias.herokuapp.com/usuarios';
   
 
   constructor(private httpClient : HttpClient) { }

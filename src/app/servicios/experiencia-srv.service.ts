@@ -4,10 +4,10 @@ import { map } from 'rxjs/operators';
 import { ExperienciaModel } from '../modelos/experienciaModel';
 import { Observable } from 'rxjs/internal/Observable';
 
-const apiUrlBorrar =  'http://localhost:8080/trabajos/acciones/borrar';
-const apiUrlUpdate =  'http://localhost:8080/trabajos';
-const apiUrlUpdate2 =  'http://localhost:8080/trabajos/acciones/actualizar/sincambios';  
-const apiUrlUpdate3 =  'http://localhost:8080/trabajos/acciones/actualizar';  
+const apiUrlBorrar =  'https://portfoliobackdiegodelias.herokuapp.com/trabajos/acciones/borrar';
+const apiUrlUpdate =  'https://portfoliobackdiegodelias.herokuapp.com/trabajos';
+const apiUrlUpdate2 =  'https://portfoliobackdiegodelias.herokuapp.com/trabajos/acciones/actualizar/sincambios';  
+const apiUrlUpdate3 =  'https://portfoliobackdiegodelias.herokuapp.com/trabajos/acciones/actualizar';  
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ const apiUrlUpdate3 =  'http://localhost:8080/trabajos/acciones/actualizar';
 export class ExperienciaSrvService {
 
   
-  private apiUrl: string = 'http://localhost:8080/trabajos';
+  private apiUrl: string = 'https://portfoliobackdiegodelias.herokuapp.com/trabajos';
          
 
   constructor(private httpClient : HttpClient) { }

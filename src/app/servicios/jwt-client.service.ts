@@ -9,8 +9,10 @@ export class JwtClientService {
   constructor(private httpClient:HttpClient) { }
 
   public generateToken(request) {
+    console.log("generate tokeeeeeeeeeeen", request)
+
     
-    return this.httpClient.post<string>("http://localhost:8080/authenticate", request, {  responseType: 'text' as 'json' });
+    return this.httpClient.post<string>("https://portfoliobackdiegodelias.herokuapp.com/authenticate", request, {  responseType: 'text' as 'json' });
   }
 
 
@@ -19,6 +21,6 @@ export class JwtClientService {
     console.log("token stringgg" , tokenStr);
 
     const headers = new HttpHeaders().set('Authorization', tokenStr);
-    return this.httpClient.get<string>("http://localhost:8080/", {headers, responseType: 'text' as 'json' });
+    return this.httpClient.get<string>("https://portfoliobackdiegodelias.herokuapp/", {headers, responseType: 'text' as 'json' });
   }
 }

@@ -7,7 +7,7 @@ import { Imagen } from '../modelos/imagen';
   providedIn: 'root'
 })
 export class ImagenService {
-  imagenUrl = 'http://localhost:8080/cloudinary/';
+  imagenUrl = 'https://portfoliobackdiegodelias.herokuapp.com/cloudinary/';
 
   constructor(private httpClient: HttpClient) { }
 
